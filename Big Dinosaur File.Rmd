@@ -44,5 +44,12 @@ bdf %>%
   group_by(Clade)%>%
   summarize(Mean = mean(Mass, na.rm = TRUE), Median = median(Mass, na.rm = TRUE))
 
-#Commit Test 3
+#Step 7 - Example for filter function
+
+bdf %>%
+  filter(Clade == "Ornithischia") %>%
+  filter(Mass <= 5000)
+
+#Left off on Data Manipulation 2 video
+
 ```

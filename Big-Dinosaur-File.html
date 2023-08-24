@@ -484,7 +484,1689 @@ bdf %&gt;%
 ## 2 Ornithischia     2385.  1197. 
 ## 3 Sauropodomorpha 14880. 11406. 
 ## 4 Theropoda         487.    21.9</code></pre>
-<pre class="r"><code>#Commit Test 3</code></pre>
+<pre class="r"><code>#Step 7 - Example for filter function
+
+bdf %&gt;%
+  filter(Clade == &quot;Ornithischia&quot;) %&gt;%
+  filter(Mass &lt;= 5000)</code></pre>
+<pre><code>##     Index                                  Taxon
+## 1     683        Probactrosaurus_mazongshanensis
+## 2     684                  Abrictosaurus_consors
+## 3     685                  Achelousaurus_horneri
+## 4     687                Agilisaurus_louderbacki
+## 5     688            Agujaceratops_mariscalensis
+## 6     689                    Ahshislepelta_minor
+## 7     694                     Aletopelta_coombsi
+## 8     698                   Anabisetia_saldiviai
+## 9     700                  Anchiceratops_ornatus
+## 10    702                 Animantarx_ramaljonesi
+## 11    703              Ankylosaurus_magniventris
+## 12    708          Archaeoceratops_yujingziensis
+## 13    709                   Arenysaurus_ardevoli
+## 14    713                  Bactrosaurus_johnsoni
+## 15    714           Bagaceratops_rozhdestvenskyi
+## 16    721           Brachylophosaurus_canadensis
+## 17    723                    Camptosaurus_dispar
+## 18    726                   Centrosaurus_apertus
+## 19    728                 Cerasinops_hodgskissi_
+## 20    732                     Chasmosaurus_belli
+## 21    733                  Chasmosaurus_russelli
+## 22    734         Chungkingosaurus_jiangbeiensis
+## 23    735                      Claosaurus_agilis
+## 24    738                Corythosaurus_casuarius
+## 25    739              Corythosaurus_intermedius
+## 26    741              Crichtonsaurus_benxiensis
+## 27    742                 Crichtonsaurus_bohlini
+## 28    751                       Dryosaurus_altus
+## 29    752             Dyoplosaurus_acutesquamous
+## 30    755                   Edmontonia_longiceps
+## 31    756                  Edmontonia_rugosidens
+## 32    762                        Eocursor_parvus
+## 33    766                   Euoplocephalus_tutus
+## 34    768                  Fruitadens_haagarorum
+## 35    770            Gargoyleosaurus_parkpinorum
+## 36    771          Gasparinisaura_cincosaltensis
+## 37    772                        Gastonia_burgei
+## 38    773           Gideonmantellia_amosanjuanae
+## 39    774         Gigantspinosaurus_sichuanensis
+## 40    775             Gilmoreosaurus_mongolensis
+## 41    778             Gongbusaurus_wucaiwanensis
+## 42    780           Graciliceratops_mongoliensis
+## 43    783                   Gryposaurus_latidens
+## 44    785                  Gryposaurus_notabilis
+## 45    787                             Haya_griva
+## 46    789                Heterodontosaurus_tucki
+## 47    790                Hexinlusaurus_multidens
+## 48    791                Hexinlusaurus_multidens
+## 49    793            Homalocephale_calathocercos
+## 50    795                   Hoplitosaurus_marshi
+## 51    798                   Hungarosaurus_tormai
+## 52    799                   Hylaeosaurus_armatus
+## 53    800               Hypacrosaurus_altispinus
+## 54    803                     Hypsilophodon_foxi
+## 55    808            Jeholosaurus_shangyuanensis
+## 56    811                    Jinzhousaurus_yangi
+## 57    813               Kentrosaurus_aethiopicus
+## 58    821                    Lambeosaurus_lambei
+## 59    822            Lambeosaurus_magnicristatus
+## 60    824                 Leptoceratops_gracilis
+## 61    825             Lesothosaurus_diagnosticus
+## 62    829                 Loricatosaurus_priscus
+## 63    835                  Maiasaura_peeblesorum
+## 64    837         Mantellisaurus_atherfieldensis
+## 65    839 Micropachycephalosaurus_hongtuyanensis
+## 66    840                     Minmi_paravertebra
+## 67    844                       Mochlodon_vorosi
+## 68    846            Montanoceratops_cerorynchus
+## 69    850              Nanningosaurus_dashiensis
+## 70    851                 Nanyangosaurus_zhugeii
+## 71    853                  Niobrarasaurus_coleii
+## 72    855                    Nodosaurus_textilis
+## 73    857         Notohypsilophodon_comodorensis
+## 74    859                  Olorotitan_arharensis
+## 75    860                     Orodromeus_makelai
+## 76    861              Oryctodromeus_cubicularis
+## 77    863                 Othnielosaurus_consors
+## 78    864               Ouranosaurus_nigeriensis
+## 79    865        Pachycephalosaurus_wyomingensis
+## 80    866            Pachyrhinosaurus_canadensis
+## 81    867              Pachyrhinosaurus_lakustai
+## 82    869                    Panoplosaurus_mirus
+## 83    872        Parasaurolophus_cyrtoctristatus
+## 84    874                   Parksosaurus_warreni
+## 85    882                    Pisanosaurus_mertii
+## 86    884                      Polacanthus_foxii
+## 87    886                    Prenocephale_prenes
+## 88    890              Probactrosaurus_gobiensis
+## 89    891                 Prosaurolophus_maximus
+## 90    892                 Protoceratops_andrewsi
+## 91    894               Psittacosaurus_gobiensis
+## 92    895            Psittacosaurus_mongoliensis
+## 93    896         Psittacosaurus_neimongoliensis
+## 94    897                Psittacosaurus_sinensis
+## 95    898                     Psittacosaurus_sp.
+## 96    901                      Rhabdodon_priscum
+## 97    904                 Saichania_chulsanensis
+## 98    908                    Sauropelta_edwardsi
+## 99    909               Scelidosaurus_harrisonii
+## 100   910                 Scutellosaurus_lawleri
+## 101   923                     Stegoceras_validum
+## 102   925                      Stegosaurus_mjosi
+## 103   926                    Stegosaurus_stenops
+## 104   928                   Stenopelix_valdensis
+## 105   929               Stormbergia_dangershoeki
+## 106   930          Struthiosaurus_transilvanicus
+## 107   931              Styracosaurus_albertensis
+## 108   932               Talarurus_plicatospineus
+## 109   933              Talenkauen_santacrucensis
+## 110   934                        Tanius_sinensis
+## 111   939                    Tenontosaurus_dossi
+## 112   940                 Tenontosaurus_tilletti
+## 113   941                 Tethyshadros_insularis
+## 114   945          Thescelosaurus_assiniboiensis
+## 115   946               Thescelosaurus_neglectus
+## 116   947                  Tianyulong_confuciusi
+## 117   948                 Tianzhenosaurus_youngi
+## 118   955              Tsintaosaurus_spinorhinus
+## 119   957              Turanoceratops_tardabilis
+## 120   959               Udanoceratops_tschizhovi
+## 121   962                   Uteodon_aphanoecetes
+## 122   966               Wannanosaurus_yansiensis
+## 123   967              Willinakaqe_salitralensis
+## 124   969                Xiaosaurus_dashanpensis
+## 125   974                         Yinlong_downsi
+## 126   975                Yueosaurus_tiantaiensis
+## 127   976                      Zalmoxes_robustus
+## 128   979            Zhejiangosaurus_lishuiensis
+##                               Name_in_tree        Clade           Subclade
+## 1                                      not Ornithischia     Hadrosauroidea
+## 2                    Abrictosaurus_consors Ornithischia       Ornithischia
+## 3                    Achelousaurus_horneri Ornithischia       Ceratopsidae
+## 4                  Agilisaurus_louderbacki Ornithischia       Ornithischia
+## 5              Agujaceratops_mariscalensis Ornithischia       Ceratopsidae
+## 6                                      not Ornithischia       Ankylosauria
+## 7                                      not Ornithischia       Ankylosauria
+## 8                     Anabisetia_saldiviai Ornithischia       Ornithischia
+## 9                    Anchiceratops_ornatus Ornithischia       Ceratopsidae
+## 10                  Animantarx_ramaljonesi Ornithischia       Ankylosauria
+## 11               Ankylosaurus_magniventris Ornithischia       Ankylosauria
+## 12           Archaeoceratops_yujingziensis Ornithischia         Ceratopsia
+## 13                    Arenysaurus_ardevoli Ornithischia     Hadrosauroidea
+## 14                   Bactrosaurus_johnsoni Ornithischia     Hadrosauroidea
+## 15            Bagaceratops_rozhdestvenskyi Ornithischia         Ceratopsia
+## 16            Brachylophosaurus_canadensis Ornithischia     Hadrosauroidea
+## 17                     Camptosaurus_dispar Ornithischia       Iguanodontia
+## 18                    Centrosaurus_apertus Ornithischia       Ceratopsidae
+## 19                   Cerasinops_hodgskissi Ornithischia         Ceratopsia
+## 20                      Chasmosaurus_belli Ornithischia       Ceratopsidae
+## 21                   Chasmosaurus_russelli Ornithischia       Ceratopsidae
+## 22          Chungkingosaurus_jiangbeiensis Ornithischia        Stegosauria
+## 23                       Claosaurus_agilis Ornithischia     Hadrosauroidea
+## 24                 Corythosaurus_casuarius Ornithischia     Hadrosauroidea
+## 25               Corythosaurus_intermedius Ornithischia     Hadrosauroidea
+## 26               Crichtonsaurus_benxiensis Ornithischia       Ankylosauria
+## 27                  Crichtonsaurus_bohlini Ornithischia       Ankylosauria
+## 28                        Dryosaurus_altus Ornithischia       Iguanodontia
+## 29              Dyoplosaurus_acutesquamous Ornithischia       Ankylosauria
+## 30                    Edmontonia_longiceps Ornithischia       Ankylosauria
+## 31                   Edmontonia_rugosidens Ornithischia       Ankylosauria
+## 32                                Eocursor Ornithischia       Ornithischia
+## 33                    Euoplocephalus_tutus Ornithischia       Ankylosauria
+## 34                   Fruitadens_haagarorum Ornithischia       Ornithischia
+## 35             Gargoyleosaurus_parkpinorum Ornithischia       Ankylosauria
+## 36           Gasparinisaura_cincosaltensis Ornithischia       Ornithischia
+## 37                         Gastonia_burgei Ornithischia       Ankylosauria
+## 38            Gideonmantellia_amosanjuanae Ornithischia       Ornithischia
+## 39                                     not Ornithischia        Stegosauria
+## 40              Gilmoreosaurus_mongolensis Ornithischia     Hadrosauroidea
+## 41                                     not Ornithischia       Ornithischia
+## 42            Graciliceratops_mongoliensis Ornithischia         Ceratopsia
+## 43                    Gryposaurus_latidens Ornithischia     Hadrosauroidea
+## 44                   Gryposaurus_notabilis Ornithischia     Hadrosauroidea
+## 45                              Haya_griva Ornithischia       Ornithischia
+## 46                 Heterodontosaurus_tucki Ornithischia       Ornithischia
+## 47                                     not Ornithischia       Ornithischia
+## 48                 Hexinlusaurus_multidens Ornithischia       Ornithischia
+## 49             Homalocephale_calathocercos Ornithischia Pachycephalosauria
+## 50                    Hoplitosaurus_marshi Ornithischia       Ankylosauria
+## 51                    Hungarosaurus_tormai Ornithischia       Ankylosauria
+## 52                    Hylaeosaurus_armatus Ornithischia       Ankylosauria
+## 53                Hypacrosaurus_altispinus Ornithischia     Hadrosauroidea
+## 54                      Hypsilophodon_foxi Ornithischia       Ornithischia
+## 55             Jeholosaurus_shangyuanensis Ornithischia       Ornithischia
+## 56                     Jinzhousaurus_yangi Ornithischia     Hadrosauroidea
+## 57                Kentrosaurus_aethiopicus Ornithischia        Stegosauria
+## 58                     Lambeosaurus_lambei Ornithischia     Hadrosauroidea
+## 59             Lambeosaurus_magnicristatus Ornithischia     Hadrosauroidea
+## 60                  Leptoceratops_gracilis Ornithischia         Ceratopsia
+## 61              Lesothosaurus_diagnosticus Ornithischia       Ornithischia
+## 62                  Loricatosaurus_priscus Ornithischia        Stegosauria
+## 63                   Maiasaura_peeblesorum Ornithischia     Hadrosauroidea
+## 64          Mantellisaurus_atherfieldensis Ornithischia       Iguanodontia
+## 65  Micropachycephalosaurus_hongtuyanensis Ornithischia       Ornithischia
+## 66                      Minmi_paravertebra Ornithischia       Ankylosauria
+## 67                        Mochlodon_vorosi Ornithischia       Iguanodontia
+## 68             Montanoceratops_cerorynchus Ornithischia         Ceratopsia
+## 69               Nanningosaurus_dashiensis Ornithischia     Hadrosauroidea
+## 70                  Nanyangosaurus_zhugeii Ornithischia     Hadrosauroidea
+## 71                   Niobrarasaurus_coleii Ornithischia       Ankylosauria
+## 72                     Nodosaurus_textilis Ornithischia       Ankylosauria
+## 73                                     not Ornithischia       Ornithischia
+## 74                   Olorotitan_arharensis Ornithischia     Hadrosauroidea
+## 75                      Orodromeus_makelai Ornithischia       Ornithischia
+## 76               Oryctodromeus_cubicularis Ornithischia       Ornithischia
+## 77                  Othnielosaurus_consors Ornithischia       Ornithischia
+## 78                Ouranosaurus_nigeriensis Ornithischia       Iguanodontia
+## 79         Pachycephalosaurus_wyomingensis Ornithischia Pachycephalosauria
+## 80             Pachyrhinosaurus_canadensis Ornithischia       Ceratopsidae
+## 81               Pachyrhinosaurus_lakustai Ornithischia       Ceratopsidae
+## 82                     Panoplosaurus_mirus Ornithischia       Ankylosauria
+## 83         Parasaurolophus_cyrtoctristatus Ornithischia     Hadrosauroidea
+## 84                    Parksosaurus_warreni Ornithischia       Ornithischia
+## 85                     Pisanosaurus_mertii Ornithischia       Ornithischia
+## 86                       Polacanthus_foxii Ornithischia       Ankylosauria
+## 87                     Prenocephale_prenes Ornithischia Pachycephalosauria
+## 88               Probactrosaurus_gobiensis Ornithischia     Hadrosauroidea
+## 89                  Prosaurolophus_maximus Ornithischia     Hadrosauroidea
+## 90                  Protoceratops_andrewsi Ornithischia         Ceratopsia
+## 91                Psittacosaurus_gobiensis Ornithischia         Ceratopsia
+## 92             Psittacosaurus_mongoliensis Ornithischia         Ceratopsia
+## 93          Psittacosaurus_neimongoliensis Ornithischia         Ceratopsia
+## 94                 Psittacosaurus_sinensis Ornithischia         Ceratopsia
+## 95                                     not Ornithischia         Ceratopsia
+## 96                       Rhabdodon_priscum Ornithischia       Iguanodontia
+## 97                  Saichania_chulsanensis Ornithischia       Ankylosauria
+## 98                     Sauropelta_edwardsi Ornithischia       Ankylosauria
+## 99                Scelidosaurus_harrisonii Ornithischia        Thyreophora
+## 100                 Scutellosaurus_lawleri Ornithischia        Thyreophora
+## 101                     Stegoceras_validum Ornithischia Pachycephalosauria
+## 102                      Stegosaurus_mjosi Ornithischia        Stegosauria
+## 103                    Stegosaurus_stenops Ornithischia        Stegosauria
+## 104                                    not Ornithischia       Ornithischia
+## 105               Stormbergia_dangershoeki Ornithischia       Ornithischia
+## 106          Struthiosaurus_transilvanicus Ornithischia       Ankylosauria
+## 107              Styracosaurus_albertensis Ornithischia       Ceratopsidae
+## 108               Talarurus_plicatospineus Ornithischia       Ankylosauria
+## 109              Talenkauen_santacrucensis Ornithischia     Hadrosauroidea
+## 110                        Tanius_sinensis Ornithischia     Hadrosauroidea
+## 111                    Tenontosaurus_dossi Ornithischia       Iguanodontia
+## 112                 Tenontosaurus_tilletti Ornithischia       Iguanodontia
+## 113                 Tethyshadros_insularis Ornithischia     Hadrosauroidea
+## 114          Thescelosaurus_assiniboiensis Ornithischia       Ornithischia
+## 115               Thescelosaurus_neglectus Ornithischia       Ornithischia
+## 116                  Tianyulong_confuciusi Ornithischia       Ornithischia
+## 117                 Tianzhenosaurus_youngi Ornithischia       Ankylosauria
+## 118              Tsintaosaurus_spinorhinus Ornithischia     Hadrosauroidea
+## 119              Turanoceratops_tardabilis Ornithischia         Ceratopsia
+## 120               Udanoceratops_tschizhovi Ornithischia         Ceratopsia
+## 121                   Uteodon_aphanoecetes Ornithischia       Iguanodontia
+## 122                                    not Ornithischia Pachycephalosauria
+## 123              Willinakaqe_salitralensis Ornithischia     Hadrosauroidea
+## 124                                    not Ornithischia       Ornithischia
+## 125                         Yinlong_downsi Ornithischia         Ceratopsia
+## 126                                    not Ornithischia       Ornithischia
+## 127                      Zalmoxes_robustus Ornithischia       Iguanodontia
+## 128            Zhejiangosaurus_lishuiensis Ornithischia       Ankylosauria
+##             Subclade_2             Max_age             Min_age     FL    FC
+## 1       Hadrosauroidea           Barremian              Aptian  794.0 309.0
+## 2         Ornithischia          Hettangian          Sinemurian   77.1    NA
+## 3         Ceratopsidae    Middle_Campanian      Late_Campanian  612.0 258.0
+## 4         Ornithischia            Bajocian           Callovian  198.5    NA
+## 5         Ceratopsidae           Campanian           Campanian  770.0 325.0
+## 6         Ankylosauria      Late_Campanian      Late_Campanian     NA    NA
+## 7         Ankylosauria      Late_Campanian      Late_Campanian  600.0    NA
+## 8         Ornithischia     Middle_Turonian       Late_Turonian  212.0  74.5
+## 9         Ceratopsidae      Late_Campanian Early_Maastrichtian  740.0    NA
+## 10        Ankylosauria         Late_Albian    Early_Cenomanian  415.0 193.0
+## 11        Ankylosauria  Late_Maastrichtian  Late_Maastrichtian  660.0 363.0
+## 12        Ceratopsia_2              Aptian              Albian  102.0    NA
+## 13      Hadrosauroidea  Late_Maastrichtian  Late_Maastrichtian  711.0    NA
+## 14      Hadrosauroidea    Middle_Campanian      Late_Campanian  796.0 339.0
+## 15        Ceratopsia_3      Late_Campanian      Late_Campanian  103.0    NA
+## 16      Hadrosauroidea    Middle_Campanian    Middle_Campanian 1295.0 440.0
+## 17        Iguanodontia        Kimmeridgian           Tithonian  630.0 275.0
+## 18        Ceratopsidae           Campanian           Campanian  795.0 286.0
+## 19        Ceratopsia_2    Middle_Campanian      Late_Campanian  352.0    NA
+## 20        Ceratopsidae      Late_Campanian      Late_Campanian  825.0 325.0
+## 21        Ceratopsidae      Late_Campanian      Late_Campanian  716.0 312.0
+## 22         Stegosauria           Oxfordian  Early_Kimmeridgian  670.0    NA
+## 23      Hadrosauroidea      Late_Coniacian      Late_Coniacian  697.0    NA
+## 24      Hadrosauroidea      Late_Campanian      Late_Campanian 1080.0    NA
+## 25      Hadrosauroidea      Late_Campanian      Late_Campanian 1058.8 365.0
+## 26        Ankylosauria          Cenomanian            Turonian  320.0    NA
+## 27        Ankylosauria          Cenomanian            Turonian  343.0    NA
+## 28        Iguanodontia        Kimmeridgian           Tithonian  350.0 138.0
+## 29        Ankylosauria    Middle_Campanian      Late_Campanian  562.0 273.0
+## 30        Ankylosauria    Middle_Campanian    Middle_Campanian  663.0 276.0
+## 31        Ankylosauria  Late_Maastrichtian  Late_Maastrichtian     NA    NA
+## 32        Ornithischia              Norian            Rhaetian  109.0    NA
+## 33        Ankylosauria      Late_Campanian      Late_Campanian  547.5 278.0
+## 34        Ornithischia     Early_Tithonian     Early_Tithonian     NA  19.6
+## 35        Ankylosauria        Kimmeridgian           Tithonian  465.0 193.0
+## 36        Ornithischia     Early_Campanian     Early_Campanian     NA  55.0
+## 37        Ankylosauria           Barremian           Barremian  590.0 258.0
+## 38        Ornithischia     Early_Barremian     Early_Barremian  112.9    NA
+## 39         Stegosauria           Oxfordian  Early_Kimmeridgian  673.0 278.0
+## 40      Hadrosauroidea    Middle_Campanian      Late_Campanian  695.0 280.0
+## 41        Ornithischia           Callovian           Oxfordian  110.0  39.3
+## 42        Ceratopsia_3          Cenomanian           Santonian   96.0    NA
+## 43      Hadrosauroidea    Middle_Campanian      Late_Campanian 1120.0 397.5
+## 44      Hadrosauroidea           Campanian           Campanian 1135.0 445.0
+## 45        Ornithischia           Santonian           Santonian  131.0    NA
+## 46        Ornithischia          Hettangian          Sinemurian  111.5    NA
+## 47        Ornithischia            Bajocian           Callovian     NA    NA
+## 48        Ornithischia            Bajocian           Callovian  153.4    NA
+## 49  Pachycephalosauria      Late_Campanian Early_Maastrichtian  212.0  83.0
+## 50        Ankylosauria           Barremian           Barremian  480.0 210.0
+## 51        Ankylosauria           Santonian           Santonian  490.0 175.0
+## 52        Ankylosauria         Valanginian         Valanginian     NA    NA
+## 53      Hadrosauroidea      Late_Campanian Early_Maastrichtian 1074.0 395.0
+## 54        Ornithischia      Late_Barremian      Late_Barremian  173.0  70.0
+## 55        Ornithischia        Early_Aptian        Early_Aptian  135.5  50.2
+## 56      Hadrosauroidea                 121               119.4  625.0    NA
+## 57         Stegosauria   Late_Kimmeridgian           Tithonian  645.0 245.0
+## 58      Hadrosauroidea      Late_Campanian      Late_Campanian 1052.5 367.5
+## 59      Hadrosauroidea      Late_Campanian      Late_Campanian 1000.0    NA
+## 60        Ceratopsia_3  Late_Maastrichtian  Late_Maastrichtian  244.0 162.0
+## 61        Ornithischia          Hettangian          Sinemurian  102.0  43.0
+## 62         Stegosauria    Middle_Callovian    Middle_Callovian  900.0 300.0
+## 63      Hadrosauroidea    Middle_Campanian      Late_Campanian 1020.0 410.0
+## 64      Iguanodontia_3         Hauterivian           Barremian  735.0 270.0
+## 65        Ornithischia           Campanian           Campanian  119.0  42.0
+## 66        Ankylosauria         Valanginian           Barremian  310.0    NA
+## 67        Iguanodontia           Santonian           Santonian  218.0  77.0
+## 68        Ceratopsia_3 Early_Maastrichtian Early_Maastrichtian  346.0 122.5
+## 69      Hadrosauroidea     Late_Cretaceous     Late_Cretaceous  976.0    NA
+## 70      Hadrosauroidea              Albian              Albian  524.0 216.0
+## 71        Ankylosauria      Late_Coniacian    Middle_Santonian  490.0    NA
+## 72        Ankylosauria   Middle_Cenomanian   Middle_Cenomanian  609.0 288.0
+## 73        Ornithischia          Cenomanian          Cenomanian     NA    NA
+## 74      Hadrosauroidea  Late_Maastrichtian  Late_Maastrichtian 1090.0 395.0
+## 75        Ornithischia           Campanian       Maastrichtian  166.1  65.0
+## 76        Ornithischia          Cenomanian          Cenomanian     NA    NA
+## 77        Ornithischia        Kimmeridgian           Tithonian  163.0  61.0
+## 78      Iguanodontia_3              Aptian              Albian  830.7    NA
+## 79  Pachycephalosauria  Late_Maastrichtian  Late_Maastrichtian  441.0 189.0
+## 80        Ceratopsidae      Late_Campanian Early_Maastrichtian  902.5 385.0
+## 81        Ceratopsidae      Late_Campanian      Late_Campanian  790.0    NA
+## 82        Ankylosauria      Late_Campanian      Late_Campanian     NA    NA
+## 83      Hadrosauroidea      Late_Campanian      Late_Campanian 1072.5 445.0
+## 84        Ornithischia Early_Maastrichtian Early_Maastrichtian  270.0 103.0
+## 85        Ornithischia             Carnian             Carnian  170.3    NA
+## 86        Ankylosauria    Late_Valanginian           Barremian  548.0 206.0
+## 87  Pachycephalosauria      Late_Campanian Early_Maastrichtian  222.0  99.0
+## 88      Hadrosauroidea           Barremian              Albian  750.0    NA
+## 89      Hadrosauroidea      Late_Campanian      Late_Campanian 1000.0 355.0
+## 90        Ceratopsia_3      Late_Campanian      Late_Campanian  215.0  93.0
+## 91        Ceratopsia_1              Aptian              Aptian  125.0    NA
+## 92        Ceratopsia_1          Berriasian         Hauterivian  154.0    NA
+## 93        Ceratopsia_1         Valanginian              Albian  129.5  47.8
+## 94        Ceratopsia_1              Aptian              Aptian   96.0    NA
+## 95        Ceratopsia_1                &lt;NA&gt;                &lt;NA&gt;  178.7  74.5
+## 96        Iguanodontia      Late_Campanian Early_Maastrichtian  550.0    NA
+## 97        Ankylosauria      Late_Campanian      Late_Campanian  379.5 166.0
+## 98        Ankylosauria              Albian              Albian  754.0 317.0
+## 99         Thyreophora          Sinemurian          Sinemurian  400.0 174.0
+## 100        Thyreophora          Sinemurian       Pliensbachian     NA    NA
+## 101 Pachycephalosauria           Campanian           Campanian  225.0  60.5
+## 102        Stegosauria      Late_Oxfordian  Early_Kimmeridgian  978.0 345.0
+## 103        Stegosauria        Kimmeridgian           Tithonian 1157.0 366.0
+## 104       Ornithischia          Berriasian          Berriasian  144.0    NA
+## 105       Ornithischia          Hettangian          Sinemurian  193.0    NA
+## 106       Ankylosauria       Maastrichtian       Maastrichtian  265.0  96.0
+## 107       Ceratopsidae      Late_Campanian      Late_Campanian  792.0 365.0
+## 108       Ankylosauria           Santonian           Santonian  470.0    NA
+## 109     Hadrosauroidea   Middle_Cenomanian            Turonian  455.0    NA
+## 110     Hadrosauroidea           Campanian           Campanian 1039.0 346.0
+## 111       Iguanodontia         Late_Aptian         Late_Aptian  557.0    NA
+## 112       Iguanodontia              Albian              Albian  575.0 227.5
+## 113     Hadrosauroidea      Late_Campanian Early_Maastrichtian  420.0    NA
+## 114       Ornithischia  Late_Maastrichtian  Late_Maastrichtian  304.5 121.0
+## 115       Ornithischia  Late_Maastrichtian  Late_Maastrichtian  448.0 183.0
+## 116       Ornithischia      Late_Bathonian  Early_Kimmeridgian   51.0    NA
+## 117       Ankylosauria     Late_Cretaceous     Late_Cretaceous  402.6    NA
+## 118     Hadrosauroidea           Campanian           Campanian 1148.0 425.0
+## 119       Ceratopsia_3       Late_Turonian       Late_Turonian     NA    NA
+## 120       Ceratopsia_2      Late_Campanian      Late_Campanian     NA    NA
+## 121       Iguanodontia        Kimmeridgian           Tithonian  395.0 172.0
+## 122 Pachycephalosauria Early_Maastrichtian Early_Maastrichtian   92.5  33.0
+## 123     Hadrosauroidea      Late_Campanian Early_Maastrichtian 1000.0    NA
+## 124       Ornithischia            Bajocian           Callovian  110.0    NA
+## 125       Ceratopsia_1           Oxfordian           Oxfordian  152.0  71.0
+## 126       Ornithischia              Aptian          Cenomanian     NA    NA
+## 127       Iguanodontia       Maastrichtian       Maastrichtian  321.0 125.0
+## 128       Ankylosauria          Cenomanian          Cenomanian  525.0    NA
+##       FML   FAP TL_TLE    TC    HL    HC   HML  HAP    RC RL_RLE   MtL
+## 1      NA    NA  630.0 216.0 345.0 134.5    NA   NA  73.0  325.0      
+## 2     6.2   8.4  102.8    NA  53.5    NA   5.5   NA    NA     NA  54.5
+## 3    85.9  68.2     NA    NA    NA    NA    NA   NA    NA     NA      
+## 4      NA    NA  207.0    NA  97.0    NA    NA   NA    NA   87.6 103.5
+## 5      NA    NA     NA    NA    NA 220.0    NA   NA    NA     NA      
+## 6      NA    NA     NA    NA 310.0    NA  53.0 48.0    NA     NA      
+## 7   108.0    NA  375.0    NA 400.0    NA 100.0   NA    NA     NA      
+## 8      NA    NA  230.0    NA    NA    NA    NA   NA    NA     NA      
+## 9      NA 150.0  542.0    NA 523.0    NA  91.0 75.0    NA  292.0   140
+## 10   72.0    NA     NA    NA 298.0 155.0    NA   NA    NA     NA      
+## 11  136.8  76.4     NA    NA 572.0 315.0 103.3 95.8    NA     NA      
+## 12   12.0  12.5     NA    NA    NA    NA    NA   NA    NA     NA      
+## 13     NA    NA     NA    NA    NA    NA  56.0 38.0    NA     NA      
+## 14  118.0 103.0  655.0 246.0    NA 136.0    NA   NA    NA     NA   240
+## 15     NA    NA  120.0    NA  79.5    NA    NA   NA    NA   61.0    65
+## 16     NA 149.0 1140.0    NA 585.0 221.0    NA   NA    NA  705.0   435
+## 17  107.9  80.3  520.0 203.0 370.0 150.0  47.5 39.8  84.0  222.0 199.6
+## 18   84.8  99.3  520.0 268.0 563.0 249.0  99.0   NA    NA     NA   206
+## 19     NA  36.0  344.6    NA 260.3    NA  30.0 28.0    NA  175.0 170.7
+## 20   94.6 100.0  565.0 282.0 580.0 254.0  80.3 65.6 122.5  338.5 217.7
+## 21   97.6  76.5  498.0 257.0 553.0 270.0  91.0 70.4 118.0  312.0   170
+## 22  110.0    NA  487.0    NA 440.0    NA  91.0   NA    NA     NA      
+## 23     NA  99.0  572.0    NA 360.0    NA    NA 46.0    NA  271.0   216
+## 24     NA 130.0 1000.0    NA 585.0    NA    NA   NA    NA     NA   380
+## 25   86.6 108.0  940.0 370.0 536.3 237.5  79.5 69.2 146.0  635.0   370
+## 26   49.0    NA  290.0    NA 230.0    NA  36.0   NA    NA  145.0      
+## 27   67.0    NA     NA    NA 240.0    NA  51.0   NA    NA     NA      
+## 28   42.1  40.3  393.0 115.0 191.0  63.0  20.8 18.8  40.0  146.2      
+## 29  103.2  45.8     NA    NA    NA    NA    NA   NA 119.0  240.0   108
+## 30     NA    NA  558.0    NA 478.0 240.0  94.3 48.3 168.0  297.9      
+## 31     NA    NA     NA    NA 420.0 209.0  78.3 49.1    NA     NA      
+## 32    9.2  12.4  137.0  30.0  67.0    NA    NA   NA    NA   42.0    75
+## 33     NA    NA  411.5 263.0 415.0 244.0  82.0   NA 147.0  271.0      
+## 34     NA    NA   71.8    NA  36.7    NA   2.7   NA    NA     NA      
+## 35   75.0  58.0     NA    NA 292.0 175.0  60.0 50.0    NA     NA      
+## 36     NA    NA     NA    NA    NA    NA    NA   NA    NA     NA      
+## 37     NA    NA  300.0    NA 320.0 177.0    NA   NA    NA     NA      
+## 38   11.5  13.2  132.0    NA    NA    NA    NA   NA    NA     NA  60.9
+## 39   88.0  60.0  460.0    NA 435.0 235.0  70.0 65.0    NA     NA      
+## 40     NA    NA  615.0 234.0 315.0 142.0    NA   NA  86.0  309.0      
+## 41     NA    NA  124.3    NA  57.5    NA   7.4   NA    NA   46.0    68
+## 42   10.2  10.8  110.0    NA  84.7    NA   7.1   NA    NA   60.0      
+## 43  111.0 137.8 1074.0 376.0 758.0 251.0    NA   NA    NA     NA      
+## 44  135.2 152.0 1012.0 358.0 506.0 208.0  64.5 57.7    NA     NA      
+## 45     NA  17.5  155.0    NA  86.0    NA    NA 10.0    NA   66.0      
+## 46     NA    NA  143.0    NA  83.5    NA    NA   NA    NA   58.0  72.5
+## 47     NA    NA  243.8    NA 158.3    NA  15.0   NA    NA     NA      
+## 48   11.9  18.8  185.6    NA 101.3    NA  10.9  6.6    NA   65.7  97.5
+## 49   25.2    NA     NA    NA    NA    NA    NA   NA    NA     NA   100
+## 50   90.0  41.0     NA    NA    NA    NA    NA   NA    NA     NA      
+## 51     NA    NA     NA 190.0 455.0 160.0  57.0   NA    NA  430.0   200
+## 52     NA    NA  406.0 188.0 440.0 200.0  60.0 62.0    NA     NA      
+## 53     NA    NA  995.0 350.0 510.0 222.0    NA   NA    NA  620.0   350
+## 54   21.2  22.2     NA    NA 147.0  50.0    NA   NA    NA     NA      
+## 55     NA    NA  160.0  41.0    NA    NA    NA   NA    NA     NA  75.5
+## 56     NA    NA     NA    NA 420.0    NA  58.5   NA    NA  265.0      
+## 57   84.0  62.0     NA    NA 353.0 210.0  65.0 57.0    NA     NA      
+## 58  116.1 104.7  900.0 338.0 522.5 225.0  74.8 62.4 138.0  305.0   378
+## 59     NA 102.8 1010.0    NA 482.0    NA  60.7 53.5    NA  625.0   371
+## 60     NA    NA  219.0    NA 295.0 117.0    NA   NA  68.0  196.0      
+## 61   11.6  12.1  129.0  32.5  65.0  20.0    NA   NA    NA   37.0    67
+## 62  115.0  80.0     NA 232.0 535.0 261.0  85.0 66.0    NA     NA      
+## 63     NA    NA     NA    NA 580.0 205.0  63.2 56.0 121.5  565.0   410
+## 64   95.4  75.3  677.5 240.5 435.0 167.0  61.0 43.8 110.0  335.0 266.5
+## 65   10.5  13.0     NA    NA    NA    NA    NA   NA    NA     NA      
+## 66   46.1  37.9  270.0    NA 280.0    NA  35.3 32.7    NA     NA      
+## 67     NA    NA     NA    NA 156.0  43.0    NA   NA    NA     NA      
+## 68   42.6  33.7  335.5 117.5 263.0  86.3  28.4 24.9  51.2     NA      
+## 69  143.0    NA  915.0    NA    NA    NA    NA 69.0    NA     NA      
+## 70   81.0  48.0  526.0 189.0 265.0 114.0  34.0   NA    NA  230.0   193
+## 71   65.0  60.0  365.0    NA 380.0    NA  68.0 58.0    NA  270.0   105
+## 72  101.1  63.4  455.0 213.0    NA    NA    NA   NA    NA     NA   124
+## 73     NA    NA  218.0    NA 120.0    NA  14.0   NA    NA     NA      
+## 74     NA    NA 1120.0    NA 595.0 248.0    NA   NA    NA     NA   369
+## 75   20.4  15.9  202.9  51.8 105.1  38.0  13.7  9.1    NA     NA      
+## 76     NA    NA  254.0    NA 157.0    NA  16.0   NA    NA     NA      
+## 77   16.4  19.7     NA    NA    NA    NA    NA   NA    NA     NA      
+## 78   99.7  86.2  767.3    NA 555.0    NA  53.0 38.0    NA  418.0   287
+## 79     NA    NA     NA    NA    NA    NA    NA   NA    NA     NA      
+## 80     NA    NA  665.0    NA 665.0 275.0    NA   NA    NA  375.0      
+## 81     NA    NA  550.0    NA 555.0    NA    NA   NA    NA     NA      
+## 82     NA    NA  378.0 191.0 439.0 201.0  70.4 50.0    NA     NA      
+## 83  142.4 124.5  975.0 366.0 555.0 241.0  88.8 69.5    NA  585.0   395
+## 84   30.0  34.0  312.5  83.0 218.0  72.0  21.0 21.6    NA  127.0   151
+## 85   23.0  25.0  159.4  48.5    NA    NA    NA   NA    NA     NA  95.5
+## 86     NA    NA  330.0 164.0    NA    NA    NA   NA    NA     NA      
+## 87     NA    NA     NA    NA    NA    NA    NA   NA    NA     NA      
+## 88  114.0  79.0     NA    NA 298.0    NA  39.0   NA    NA     NA      
+## 89   90.1 107.9  825.5 310.0 540.0 225.0  71.9 48.8 130.5  478.5 313.5
+## 90   29.0  28.3  273.0 125.0 220.0  62.0    NA   NA    NA  135.0   125
+## 91     NA  15.5  129.0    NA  92.0    NA  11.0   NA    NA     NA      
+## 92     NA    NA  156.0    NA 121.0    NA    NA   NA    NA   81.0    78
+## 93     NA  15.0  141.5    NA 105.0  36.0    NA 10.0    NA     NA    66
+## 94     NA  11.8     NA    NA    NA    NA    NA   NA    NA     NA    48
+## 95   22.9  22.8  201.4  58.0    NA    NA    NA   NA    NA     NA      
+## 96     NA  92.0  500.0    NA 370.0    NA    NA   NA    NA  320.0      
+## 97     NA    NA  210.0    NA 265.0 155.0    NA   NA    NA  150.0    60
+## 98  104.0  88.0  380.0 171.0 527.0 256.0  96.0 72.0    NA  395.0   178
+## 99   50.0  56.0  314.0 128.0    NA    NA    NA   NA    NA     NA 137.7
+## 100  12.2  19.2  147.7    NA    NA    NA    NA   NA    NA     NA      
+## 101  17.9  19.5  226.0  56.5  86.0    NA    NA 10.0    NA   50.0 100.4
+## 102    NA    NA     NA    NA    NA 330.0    NA   NA    NA     NA      
+## 103 140.4  74.4     NA    NA    NA    NA    NA   NA    NA     NA      
+## 104  22.0    NA  134.0    NA    NA    NA    NA   NA    NA   61.0    72
+## 105  27.0  26.0     NA    NA  98.0    NA    NA   NA    NA     NA      
+## 106  33.0  23.0     NA    NA    NA    NA    NA   NA    NA     NA      
+## 107    NA    NA  631.0    NA 585.5 280.0    NA   NA    NA  380.0      
+## 108    NA    NA  298.0    NA 335.0    NA  53.0   NA    NA  164.0    89
+## 109    NA    NA  456.0    NA 339.0    NA    NA   NA    NA  292.0      
+## 110    NA    NA  950.0 289.0 580.0 208.0    NA   NA    NA  570.0   396
+## 111  84.6    NA  565.0    NA 466.0    NA    NA 33.6    NA  341.0   226
+## 112    NA    NA  535.0    NA 441.0 159.0    NA   NA    NA  330.0   215
+## 113    NA    NA  550.0    NA 292.0    NA    NA   NA    NA  277.0   193
+## 114    NA    NA  282.0 105.0    NA    NA    NA   NA    NA     NA   125
+## 115  61.2  56.3     NA    NA 315.0 108.0  38.7 28.3    NA     NA      
+## 116   6.3   6.0   82.0    NA  33.5    NA    NA   NA    NA     NA    44
+## 117  73.0    NA     NA    NA 254.1    NA  45.0   NA    NA     NA      
+## 118    NA    NA 1120.0 378.0 685.0 250.0    NA   NA    NA     NA   380
+## 119    NA    NA     NA    NA    NA    NA  50.0 40.0    NA     NA      
+## 120    NA    NA     NA    NA 361.5    NA  53.9   NA    NA  232.0      
+## 121    NA    NA  360.0 150.0 227.0  94.0  29.0 24.0  64.0  143.0      
+## 122    NA    NA   86.0  27.0  43.0  16.0    NA   NA    NA     NA      
+## 123    NA    NA     NA    NA 550.0    NA    NA   NA    NA     NA      
+## 124  11.6    NA  118.0    NA  87.0    NA   8.7   NA    NA     NA    70
+## 125    NA    NA  155.0    NA  91.0  45.0    NA   NA    NA     NA      
+## 126  10.5  12.0     NA    NA  65.0    NA   7.9  6.4    NA   44.0      
+## 127  43.0  31.0     NA    NA 210.0  83.0  27.0 23.3    NA     NA      
+## 128  80.0  62.0  240.0    NA    NA    NA    NA   NA    NA     NA    75
+##                                                                                                                                                                              Source
+## 1                                                                                                                                                     IVPP V12060 (NEC): L\xfc 1997
+## 2                                                                                                                                                 BMNH RU B.54 (MTC); Thulborn 1974
+## 3                                                                                                                                                                     MOR 591 (MTC)
+## 4                                                                                                                                                                         Peng 1992
+## 5                                                                                                                                                                       Lehman 2007
+## 6                                                                                                                                                           Burns and Sullivan 2011
+## 7                                                                                                                                                            Coombs and Demere 1996
+## 8                                                                                                                                                                 MCF-PVPH-74 (DCE)
+## 9                                                                                                                                                            Mallon and Holmes 2011
+## 10                                                         John Bird and Ken Carpenter pers. comm. 12 November 2012; Carpenter et al. 1999; note that humerus and femur are crushed
+## 11                                                                                                                                                              AMNH 5214 (DCE/MTC)
+## 12                                                                                                                                                   You et al 2010; CAGS-IG-VD-003
+## 13                                                                                                                                                     Pereda-Suberbiola et al 2009
+## 14                                                                                                                                                               pers. obs. NEC/MTC
+## 15                                                                                                                                                              MPC-D 100/506 (NEC)
+## 16  MOR 794 (postcrania) CMN 8893 (skull) (NEC; Liz Freedman pers. comm. 10 June 2014; Cuthberston &amp; Holmes 2010); Individuals of very similar size (HC = 221 and 225 respectively)
+## 17                                                                                                                                                                   ROM 5090 (NEC)
+## 18                                                                                                                                                                   YPM 2015 (NEC)
+## 19                                                                                                                                                         Chinnery and Horner 2007
+## 20                                                                                                                                                                ROM 839 (NEC/MTC)
+## 21                                                                                                  CMN 2280 (NEC); Mallon 2006; also Carrano dataset TMP 82.4.5 (cast of NMC 2280)
+## 22                                                                                                                                                                  Dong et al 1983
+## 23                                                                                                                                             YPM 1190 (MTC); Lull and Wright 1942
+## 24                                                                                                                                                      AMNH 5240 (MTC); Brown 1916
+## 25                                                                                                                                                    ROM 845 (NEC/MTC); Evans 2010
+## 26                                                                                                                                                     Lu et al. 2007; BXGM V0012-1
+## 27                                                                                                                                                                        Dong 2002
+## 28                                                                                                                                                               YPM 1876 (NEC/MTC)
+## 29                                                                                                                                                               ROM 784 (DCE, MTC)
+## 30                                                                                                                                                   CMN 8531 (NEC); Carpenter 1990
+## 31                                                                                                                                                                   ROM 1215 (DCE)
+## 32                                                                                                                                                  Butler et al. 2007; Butler 2010
+## 33                                                                                                                                                          AMNH 5404 (NEC/MTC/DCE)
+## 34                                                                                                                                                               Butler et al. 2009
+## 35                                                                                                                                                     Kilbourne and Carpenter 2005
+## 36                                                                                                                                                                  MUCPv-219 (DCE)
+## 37                                                                                                     John Bird and Ken Carpenter pers. comm. 12 November 2012; Gaston et al. 2001
+## 38                                                                                                                                                         Ruiz-Omenaca et al. 2012
+## 39                                                                                                                                                 S. Toru, pers. comm. 11 May 2012
+## 40                                                                                                   Humerus: AMNH FARB 30728; Femur: AMNH FARB 30741; Tibia: AMNH FABR 30746 (DCE)
+## 41                                                                                                                          Xu Xing office specimen, number currently unknown (NEC)
+## 42                                                                                                                                                              Chinnery 2004b, ODP
+## 43                                                                                                                                                              AMNH 5465 (NEC/MTC)
+## 44                                                                                                                                                              AMNH 5350 (NEC/MTC)
+## 45                                                                                                                                                             Makovicky et al 2011
+## 46                                                                                                                                                               SAM-PK-K1332 (NEC)
+## 47                                                                                                                                                    He and Cai 1983 (MTC dataset)
+## 48                                                                                                                                                    He and Cai 1983 (MTC dataset)
+## 49                                                                                                                                     Maryanska &amp; Osmolska 1974; Evans et al. 2011
+## 50                                                                                                                                                                  USNM 4757 (MTC)
+## 51                                        ?si &amp; Mak\xe1di 2009; A. Osi pers. comm. 23 May 2012; also, skeleton estmated at 4 m, body mass estimated at 650 kg using models in paper
+## 52                                                                                                                                               BMNH R1106-1107 (RBJB); Hulke 1874
+## 53                                                                                                                                                       CMN 8501 (DCE); Evans 2010
+## 54                                                                                                                                                              BMNH R192 (NEC/RBB)
+## 55                                                                                                                                                                            (NEC)
+## 56                                                                                                                                                                 Wang et al. 2011
+## 57                                                                                                                                                                      Galton 1982
+## 58                                                                                                                                                   ROM 1218 (NEC/MTC); Evans 2010
+## 59                                                                                                                                                     TMP 66.4.1 (MTC); Evans 2010
+## 60                                                                                                                                                                  AMNH 5205 (DCE)
+## 61                                                                                                                                                                BMNH RUB17 (RBJB)
+## 62                                                                                                                                                                BMNH R3167 (RBJB)
+## 63                                                                                                                                           ROM 44770 (NEC); Taquet &amp; Russell 1999
+## 64                                                                                                                                                              IRSNB R57 (NEC/MTC)
+## 65                                                                                                                                                                   pers. obs. NEC
+## 66                                                                                                                 QM F18101 (pers. comm. Lucy Grace Leahey, November 2013); Molnar
+## 67                                                                            Osi et al. 2012; and Attila Osi, pers. comm. 9th July 2013; humerus MTM 2012.23.1; femur MTM V 01.225
+## 68                                                                                                                                                                    MOR 300 (MTC)
+## 69                                                                                                                                                                   Mo et al. 2007
+## 70                                                                                                                                                                   Xu et al. 2000
+## 71                                                                                                                                                 Mehl 1936; Carpenter et al. 1995
+## 72                                                                                                                                                                   YPM 1815 (MTC)
+## 73                                                                                                                                                                    Martinez 1998
+## 74                                                                                                                                                              Cast at IRSNB (DCE)
+## 75                                                                                                                                                                    MOR 473 (MTC)
+## 76                                                                                                                                                           Varricchio et al. 2007
+## 77                                                                                                                                                                  USNM 8397 (MTC)
+## 78                                                                                                                                                                      Taquet 1976
+## 79                                                                                                                                                                                 
+## 80                                                                                                                                                                   pers. obs. DCE
+## 81                                                                                                                                                                Currie et al 2008
+## 82                                                                                                                                        CMN 2759 (NEC); Lull 1919; Carpenter 1990
+## 83                                                                                                                                                            FMNH P27393 (DCE/MTC)
+## 84                                                                                                                                                            ROM 804 (CMB/NEC/MTC)
+## 85                                                                                                                                                                   PVL 2577 (MTC)
+## 86                                                                                                                                          BMNH R175 (MTC); Pereda-Suberbiola 1999
+## 87                                                                                                                                                             MPC-D 100/1204 (DCE)
+## 88                                                                                                                                                                      Norman 2002
+## 89                                                                                                                                                                ROM 787 (NEC/MTC)
+## 90                                                                                                                                                              AMNH 6424 (MTC/DCE)
+## 91                                                                                                                                                               Sereno et al. 2010
+## 92                                                                                                                                                  Chinnery 2004b; AMNH 6253 (MTC)
+## 93                                                                                                                                                            Russell and Zhao 1996
+## 94                                                                                                                                                                       Young 1958
+## 95                                                                                                                                                              AMNH 6541 (MTC/DCE)
+## 96                                                                                                                                                                   Lapparent 1947
+## 97                                                                                                                                                             MPC-D 100/1305 (DCE)
+## 98                                                                                                                                                              AMNH 3032 (NEC/MTC)
+## 99                                                                                                                                                                 BMNH R1111 (MTC)
+## 100                                                                                                                                                                  MCZ 8797 (MTC)
+## 101                                                                                                                             TMP 93.6.3 (cast of UA 2) (MTC); Sues &amp; Galton 1987
+## 102                                                                                                                                              SMA 0018 (pers. comm. S. Maidment)
+## 103                                                                                                                                                                  YPM 1387 (MTC)
+## 104                                                                                                                                                                     Sereno 1987
+## 105                                                                                                                                                                     Butler 2005
+## 106                                                                                                                                                               BMNH R11011 (MTC)
+## 107                                                                                                                                                                   CMN 344 (NEC)
+## 108                                                                                                                                                     Maleev 1956; Maryanska 1977
+## 109                                                                                                                                                               Novas et al. 2004
+## 110                                                                                                                                                                      Wiman 1929
+## 111                                                                                                                                                             Winkler et al. 1997
+## 112                                                                                                                                                                     Ostrom 1970
+## 113                                                                                                                                                              Dalla Vecchia 2009
+## 114                                                                                                                                                                RSM 1225.1 (CMB)
+## 115                                                                                                                                                                 AMNH 5891 (MTC)
+## 116                                                                                                                                                                Zheng et al 2009
+## 117                                                                                                                                                             Barrett et al. 1998
+## 118                                                                                                                                                      IVPP Mount/IVPP V729 (NEC)
+## 119                                                                                                                                                         Sues and Averianov 2009
+## 120                                                                                                                                                                  Chinnery 2004b
+## 121                                                                                                    Matt Lamanna per. comm. 29 May 2014; Gilmore 1925; Carpenter and Wilson 2008
+## 122                                                                                                                                                                IVPP V4447 (NEC)
+## 123                                                                                                                                                       Juarez Valieri et al 2010
+## 124                                                                                                                                                              Dong and Tang 1983
+## 125                                                                                                                                                               IVPP V17530 (NEC)
+## 126                                                                                                                                                               Zheng et al. 2012
+## 127                                                                                                                                                                 BMNH 3814 (MTC)
+## 128                                                                                                                                                               L\xfc et al. 2007
+##                                                                                                                                                                                                                                                                                                                             Age.notes
+## 1                                                                                                                                              Described by L\xfc 1997, Norman 2002 does not consider this species to be assignable to Probactrosaurus but rather more similar to Altirhinus; Paul 2008 does not consider it as valid
+## 2                                                                                                                                                                                                                                                                                                 Snout-basal tip of quadrate = 79 mm
+## 3                                                                                                                                                                                                              Mature indivdual. Skull measurements available for holotype (Sampson 1995; MOR 485); Sk, basal L: 875; Sk, Tot L: 1629
+## 4                                                                                                                                                                                                                                                                                                                                    
+## 5                                                                                                                                                                                                                                                                                                                              mature
+## 6                                                                                                                                                                                                                                                                                                                              mature
+## 7                                                                                                                                                                                                                                                                                                   immature?; Ford and Kirkland 2001
+## 8                                                                                                                                                                                                    Also available is MCF-PVPH-75, almost complete limbs; unfused braincase suggests specimens are juveniles; see Coria &amp; Calvo 2002
+## 9                                                                                                                                                                                                                                                                                                                                    
+## 10                                                                                                                                                                                                                                                        Skull length estimated as 250 mm by Carpenter et al. 1999; maturity unknown
+## 11                                                                                                                                                                                                             Fic from DCE; CMN 8880 is larger, has a skull length of 645; fibula and skull measurements from Carpenter 2004; mature
+## 12                                                                                                                                                                                                                                                                       unfused neurocentral sutures suggests an immature individual
+## 13                                                                                                                                                                                                                                                   Associated skeleton, may be one individual; mature; Pereda-Suberbiola et al 2009
+## 14                                                                                                                                                                                                                                                                                                                             mature
+## 15                                                                                                                                                                                                                                                                                                          ontogenetic stage unknown
+## 16                                                                                                                                                                                                                                                                                                                             mature
+## 17                                                                                                                                                                                                                                                                 adult; similar in size to adult figured by Carpenter &amp; Wilson 2008
+## 18                                                                                                                                                                                                                                                                                              Skull length from Lull (1933); mature
+## 19                                                                                                                                                                                                         basal length=240; total length (including frill)=355 (based on reconstruction in Fig. 1); adult (Chinnery and Horner 2007)
+## 20                                                                                                                                                                                                                                                                                                                             mature
+## 21                                                                                                                                                                                                                                                                                                skull length from Lull 1933; mature
+## 22                                                                                                                                                                                                                      humerus shaft round, diameters given; may not be the same species, but is a larger specimen than the holotype
+## 23                                                                                                                                                                                                                                                                           immature; juvenile-shaped scapula: Carpenter et al. 1995
+## 24                                                                                                                                                                                                                                                                                                                             mature
+## 25                                                                                                                                                                                                                                                                                                                             mature
+## 26                                                                                                                                                                                                                                                                                                                                   
+## 27                                                                                                                                                                                                                                                                                     Total body length estmated at 3 m in the paper
+## 28                                                                                                                                                                                                                                                                                                          immature; Osi et al. 2012
+## 29                                                                                                                                                                                                                                                                                                          mature; Arbour et al 2009
+## 30                                                                                                                          Skull length was also estimate in Carpenter et al 2001 to 600mm (no sp# given); humerus anteroposteriorly crushed, diameter likely not good; femur too crushed to take diameter, circumference ok; mature
+## 31                                                                                                                                                                                                                                                                                                  mature; get measurements from ROM
+## 32                                                                                                                                                                                                                                                                                                                                   
+## 33                                                                                                                                                                                                                                              skull length of ROM specimen = 371; NEC: forelimb; MTC: hindlimb; DCE: radius; mature
+## 34                                                                                                                                                                                                                                                        Circumference from the adult femur (LACM 115727); mature; Butler et al 2009
+## 35                                                                                                                                                                                                                                                                        sk, post width: 235.5; mature; Kilbourne and Carpenter 2005
+## 36                                                                                                                                                                                                                                                                         Largest individual, incomplete; mature; Salgado et al 2007
+## 37                                                                                                                                                                                                                width of skull: 283; est total body length of 4.6m, reconstructed from bonebed material; mature; Gaston et al. 2001
+## 38                                                                                                                                                                                                                                                                               immature; no neurocentral fusion in sacral vertebrae
+## 39                                                                                                                                                                                                                                                                                                                                   
+## 40                                                                                                                                                                                                                                                                                                                                   
+## 41                                                                                                                                                                                                                                                                                                                                   
+## 42                                                                                                                                                                                                                                                                                                               7.1 in minimum shaft
+## 43                                                                                                                                                                                                                                                                                                                             mature
+## 44                                                                                                                                                                                                                                                                                                                             mature
+## 45                                                                                                                                                                                                                                                                          immature; open neurocentral sutures: Makovicky et al 2011
+## 46                                                                                                                                                                                                                                                                                                                                   
+## 47                                                                                                                                                                                                                                                                                                                                   
+## 48                                                                                                                                                                                                                                                                                                                                   
+## 49                                                                                                                                                                                                                                                                                                                                   
+## 50                                                                                                                                                                                                                                                                                                                                   
+## 51                                                                                                                                                                                                                                                                                                       mature; ?si &amp; Mak\xe1di 2009
+## 52                                                                                                                                                                                                                                                                                                     mature; Pereda Suberbiola 1994
+## 53                                                                                                                                                                                                                                                                                                                             mature
+## 54                                                                                                                                                                                                                                                                                   mature; similar in size to adult of Werning 2012
+## 55                                                                                                                                                                                                                                                                                 mature; fused neurocentral sutures: Han et al 2012
+## 56                                                                                                                                                                                                                                                                                                            mature; Wang et al 2011
+## 57                                                                                                                                                                                                                                                                                                  Composite of multiple individuals
+## 58                                                                                                                                                                                                                                                                                                                             mature
+## 59                                                                                                                                                                                                                                                                                                                             mature
+## 60                                                                                                                                                                                                                                                                                                                                   
+## 61                                                                                                                                                                      Femur and Humerus measurements from RBJB; other circumference measurements from Carrano&#39;s dataset; other lengths from Butler 2005; diameters from Butler 2010
+## 62                                                                                                                                                                                                                                                                                              Ulna length from Maidment et al. 2008
+## 63                                                                                                                                                                                                                                                                                                                             mature
+## 64                                                                                                                                                                                                                                                                                                                                   
+## 65                                                                                                                                                                                                                                                                                                                                   
+## 66                                                                                                                                                                                                                                                                   total body length estimated to be 2.5-3.5 m; mature; Molnar 1996
+## 67                                                                                                                                                                                                                                                                                                         multiple adult individuals
+## 68                                                                                                                                                                                                                                                                                                                                   
+## 69                                                                                                                                                                                                                                                                                                                                   
+## 70                                                                                                                                                                                                  mature/immature; tunnel-like intercondylar groove on femur: Gilpin et al 2007; immature according to Paul 2008 (no justification)
+## 71                                                                                                                                                                                                                                                                                                    immature; Carpenter et al. 1995
+## 72                                                                                                                                                                                                                               Parts of the forelimb, including the humeral shaft, are present but not complete (Lull 1921); mature
+## 73                                                                                                                                                                                                                             femur present but only proximal and distal ends; immature; unfused neurocentral sutures: Martinez 1998
+## 74                                                                                                                                                                                                                                                                                                       mature; Godefroit et al 2003
+## 75                                                                                                                                                                                                                                                                                                            mature; Osi et al. 2012
+## 76                                                                                                                                                                                                                                                                                                      mature; Varricchio et al 2007
+## 77                                                                                                                                                                                                                                                                                                                                   
+## 78                                                                                                                                                                                           measurements are from two specimens of similar size; skull length is estimate of Taquet 1976; mature; well ossified skeleton:Taquet 1976
+## 79                                                                                                                                                                                                                                                                                                                                   
+## 80                                                                                                                                                                                                                                                                                                                             mature
+## 81                                                                                                                                                                                                                                          bonebed; largest examples of each used, skull length rostrum to occipital condyle; mature
+## 82                                                                                                                                                                                                                                                                         Skull length from original description (Lull 1919); mature
+## 83                                                                                                                                                                                                                                                                                                                             mature
+## 84                                                                                                                                                                                                                                                                                                          mature; Brown et al. 2011
+## 85                                                                                                                                                                                                                                                                                                                                   
+## 86                                                                                                                                                                                                                                                                                                     mature; Pereda Suberbiola 1994
+## 87                                                                                                                                                                                                                                                                                                                                   
+## 88                                                                                                                                                                                                                                                                                              mature; very large femur: Norman 2002
+## 89                                                                                                                                                                                                                                                                                                                             mature
+## 90                                                                                                                                                                                                                                                                                           DCE: hc; Chinnery 2004b: rl, fil; mature
+## 91                                                                                                                                               Skeleton with skull, not fully described though; (rostrum to posterior quadrate); mature individual with coossification of many cranial sutures\nas well as all neurocentral sutures
+## 92                                                                                                                                                                                                                                                                                                                                   
+## 93                                                                                                                                                                                                                                                                                                                                   
+## 94                                                                                                                                                                                                                                                                                                                                   
+## 95                                                                                                                                                                                                                                                                                                                                   
+## 96                                                                                                                                                                                                                   mature; same size as adult of Werning 2012; however, it is also similar in size to a juvenile of Osi et al. 2012
+## 97                                                                                                                                                                                        Skull length based on G1 SPS 100/151 in Maryanska 1977, but limb measurements seem similar between specimens; mature; Vickaryous et al 2004
+## 98                                                                                                                                                                                                                                                                                                     MTC: ul, tl, tc, MTIII; mature
+## 99                                                                                                                                                                                                    Limbs are present but not measured; potential femur circumference reported by Owen 1861, 10 inches; immature; Butler et al 2008
+## 100                                                                                                                                                                                                                                                                                                                                  
+## 101                                                                                                                                                                                                                                                                                                                                  
+## 102                                                                                                                                                                                                                                                                                                                                  
+## 103                                                                                                                                                                                                                                                                                                                                  
+## 104                                                                                                                                                                                                                                                                                                              MTIII is an estimate
+## 105                                                                                                                                                                                                                      Assigned to cf. Stormbergia, but most complete appendicular skeleton; holotype SAM-PK-K1105 femur length 202
+## 106                                                                                                                                                                                                                                                                                         mature; Pereda Suberbiola and Galton 1997
+## 107                                                                                                                                                                                      length measurements from Chinnery 2004b; femur length is an estimate; skull length from Lull 1933; skull lengths from Sampson (1995); mature
+## 108                                                                                                                                                                                                                                                             Skull width from Maleev 1952: 350mm; mature?; large size; Maleev 1952
+## 109                                                                                                                                                                                                                                                                            measurements taken with imagej from the reconstruction
+## 110                                                                                                                                                                                                                                                                                                                                  
+## 111                                                                                                                                                                                                                                                                                                      Metatarsal estimated; mature
+## 112                                                                                                                                                                                                                                                mature; similar in size to adult of Werning 2012 though not the largest individual
+## 113                                                                                                                                                                                                                                                                                                        mature; Dalla Vecchia 2009
+## 114                                                                                                                                                                                                                                                                                                          mature; Brown et al 2013
+## 115                                                                                                                                                                                                                                                                                                          mature; Brown et al 2013
+## 116                                                                                                                                                                                       the sutural lines between the neural arches and the centra are still visible, whereas the ends of the preserved long bones are all ossified
+## 117 skull width=294mm; skull based on holotype HBV-10003 (Peng and Cheng 1998); HBV-10003 has a complete postcranial skeleton but it was not measured or figured; Femur measurement is for Shanxia tanzhenensis, which according to Sullivan 1999/2000 this taxon is the junior synonym of T. youngi; immature; Vickaryous et al 2004
+## 118                                                                                                                                                                                                         Humerus and femur may not be the same specimen, but seem close based on other hadrosaurid proportions; mature; large size
+## 119                                                                                                                                                                                                                                             Limb measurements are partial, only ends of a humerus and tibia; dentary length 115mm
+## 120                                                                                                                                                                                                                                                                                                                                  
+## 121                                                                                                                                                                                                  mature?; smaller than camptosaurus so it may be immature: Carpenter and Wilson 2008; also, note highly open neurocentral sutures
+## 122                                                                                                                                                                                  At least some cranial sutures were open in IVPP V 4447, leading to the suggestion that the specimen represents a juvenile or subadult individual
+## 123                                                                                                                        Bonebed material, a femur is present but was not figured or measured in the publication, but the largest were described as &quot;near a meter in proximodistal length&quot;, largest humeri were described as 55 cm.
+## 124                                                                                                                                                                                                                                                                                           range from juvenile to adult: Dong 1992
+## 125                                                                                                                                                                                                                                                                                                                                  
+## 126                                                                                                                                                                                                Scapular length 74 mm; femur incomplete but circumference should be possible; humerus measured using imagej, weird looking humerus
+## 127                                                                                                                                                                                                                                           referred specimen to this species in Weishampel et al. 2003; mature; Benton et al. 2010
+## 128                                                                                                                                                                                                                                               tibia shaft diam: 70; fibula shift diam: 30; mature?; large size; L\xfc et al. 2007
+##     Juvenile Bonebed
+## 1          0       0
+## 2          0       0
+## 3          0       0
+## 4          0       0
+## 5          0       0
+## 6          0       0
+## 7          1       0
+## 8          1       0
+## 9          0       0
+## 10         0       0
+## 11         0       0
+## 12         1       0
+## 13         0       0
+## 14         0       0
+## 15         0       0
+## 16         0       0
+## 17         0       0
+## 18         0       0
+## 19         0       0
+## 20         0       0
+## 21         0       0
+## 22         0       0
+## 23         0       0
+## 24         0       0
+## 25         0       0
+## 26         0       0
+## 27         0       0
+## 28         1       0
+## 29         0       0
+## 30         0       0
+## 31         0       0
+## 32         1       0
+## 33         0       0
+## 34         0       0
+## 35         0       0
+## 36         0       0
+## 37         0       1
+## 38         1       0
+## 39         0       0
+## 40         0       1
+## 41         0       0
+## 42         0       0
+## 43         0       0
+## 44         0       0
+## 45         1       0
+## 46         0       0
+## 47         0       0
+## 48         1       0
+## 49         0       0
+## 50         0       0
+## 51         0       0
+## 52         0       0
+## 53         0       0
+## 54         0       0
+## 55         0       0
+## 56         0       0
+## 57         0       1
+## 58         0       0
+## 59         0       0
+## 60         0       0
+## 61         0       0
+## 62         0       0
+## 63         0       0
+## 64         0       0
+## 65         0       0
+## 66         0       0
+## 67         0       1
+## 68         0       0
+## 69         0       0
+## 70         1       0
+## 71         1       0
+## 72         0       0
+## 73         1       0
+## 74         0       0
+## 75         0       0
+## 76         0       0
+## 77         0       0
+## 78         0       1
+## 79         0       0
+## 80         0       0
+## 81         0       1
+## 82         0       0
+## 83         0       0
+## 84         0       0
+## 85         0       0
+## 86         0       0
+## 87         0       0
+## 88         0       1
+## 89         0       0
+## 90         0       0
+## 91         0       0
+## 92         0       0
+## 93         0       0
+## 94         0       0
+## 95         0       0
+## 96         0       0
+## 97         0       0
+## 98         0       0
+## 99         0       0
+## 100        0       0
+## 101        0       0
+## 102        0       0
+## 103        0       0
+## 104        0       0
+## 105        0       0
+## 106        0       0
+## 107        0       0
+## 108        0       0
+## 109        0       0
+## 110        0       0
+## 111        0       0
+## 112        0       0
+## 113        0       0
+## 114        0       0
+## 115        0       0
+## 116        0       0
+## 117        1       0
+## 118        0       1
+## 119        0       0
+## 120        0       0
+## 121        1       0
+## 122        1       0
+## 123        0       1
+## 124        0       0
+## 125        0       0
+## 126        0       0
+## 127        0       0
+## 128        0       0
+##                                                                                               Institution
+## 1                        IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 2                                                    BMNH, Natural History Museum, London, United Kingdom
+## 3                                                       MOR, Museum of the Rockies, Bozeman, Montana, USA
+## 4                                                              ZDM, Zigong Dinosaur Museum, Zigong, China
+## 5                               OMNH, Sam Noble Oklahoma Museum of Natural History, Norman, Oklahoma, USA
+## 6                                                                                                     SMP
+## 7                                            San Diego Natural History Museum, San Diego, California, USA
+## 8                              MCF-PVPH, Museo &quot;Carmen Funes&quot;, Plaza Huincul, Neuquen Province, Argentina
+## 9                                                          CMN, Canadian Museum of Nature, Ottawa, Canada
+## 10                                     CEUM, College of Eastern Utah Prehistoric Museum, Price, Utah, USA
+## 11                                                AMNH, American Museum of Natural History, New York, USA
+## 12                     CAGS, Chinese Academy of Geological Sciences, Institute of Geology, Beijing, China
+## 13     MPZ, Museo Paleontol\xf3gico de la Universidad de Zaragoza, Gobierno de Arag\xf3n, Zaragoza, Spain
+## 14                                                AMNH, American Museum of Natural History, New York, USA
+## 15           MPC, Mongolian Paleontological Center, Mongolian Academy of Sciences,\nUlaanbaatar, Mongolia
+## 16                                                      MOR, Museum of the Rockies, Bozeman, Montana, USA
+## 17                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 18                                                  YPM, Yale Peabody Museum, New Haven, Connecticut, USA
+## 19                                                      MOR, Museum of the Rockies, Bozeman, Montana, USA
+## 20                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 21                                                         CMN, Canadian Museum of Nature, Ottawa, Canada
+## 22                                                                                          CV, Chongqing
+## 23                                                  YPM, Yale Peabody Museum, New Haven, Connecticut, USA
+## 24                                                AMNH, American Museum of Natural History, New York, USA
+## 25                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 26                                                BXGM, Benxi Geological Museum, Liaoning Province, China
+## 27                                                            LPM, Liaoning Paleontological Museum, China
+## 28                                                  YPM, Yale Peabody Museum, New Haven, Connecticut, USA
+## 29                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 30                                                         CMN, Canadian Museum of Nature, Ottawa, Canada
+## 31                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 32                                                SAM, South African Iziko Museum, Capetown, South Africa
+## 33                                                AMNH, American Museum of Natural History, New York, USA
+## 34                                                       LACM, Los Angeles County Museum, California, USA
+## 35                                        DMNH, Denver Museum of Nature and Science, Denver, Colorado, UK
+## 36                MUCP, Museo Argentino de Ciencas Naturales, Universidad Nacional del Comahue, Argentina
+## 37                                     CEUM, College of Eastern Utah Prehistoric Museum, Price, Utah, USA
+## 38                                                           MPG, Museo Paleontol\xf3gico de Galve, Spain
+## 39                                                             ZDM, Zigong Dinosaur Museum, Zigong, China
+## 40                                                AMNH, American Museum of Natural History, New York, USA
+## 41                       IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 42                      ZPAL, Institute of Paleobiology of the Polish Academy of Sciences, Warsaw, Poland
+## 43                                                AMNH, American Museum of Natural History, New York, USA
+## 44                                                AMNH, American Museum of Natural History, New York, USA
+## 45                                                                   IGM (Institute of Geology, Mongolia)
+## 46                                                SAM, South African Iziko Museum, Capetown, South Africa
+## 47                                                             ZDM, Zigong Dinosaur Museum, Zigong, China
+## 48                                                             ZDM, Zigong Dinosaur Museum, Zigong, China
+## 49           MPC, Mongolian Paleontological Center, Mongolian Academy of Sciences,\nUlaanbaatar, Mongolia
+## 50                                                USNM, United States National Museum, Washington DC, USA
+## 51  MTM, Magyar Term\xe9szettudom\xe1nyi M\xfazeum (Hungarian Natural\nHistory Museum), Budapest, Hungary
+## 52                                                   BMNH, Natural History Museum, London, United Kingdom
+## 53                                                         CMN, Canadian Museum of Nature, Ottawa, Canada
+## 54                                                   BMNH, Natural History Museum, London, United Kingdom
+## 55                       IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 56                       IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 57                                                          MB, Museum f\xfcr Naturkunde, Berlin, Germany
+## 58                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 59                                          TMP, Royal Tyrrell Museum of Paleontology, Drumheller, Canada
+## 60                                                AMNH, American Museum of Natural History, New York, USA
+## 61                                                   BMNH, Natural History Museum, London, United Kingdom
+## 62                                                   BMNH, Natural History Museum, London, United Kingdom
+## 63                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 64                           IRSNB, Institut royal des Sciences naturelles de Belgique, Brussels, Belgium
+## 65                       IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 66                                                             QM, Queensland Museum, Brisbane, Australia
+## 67                                               MTM, Hungarian Natural History Museum, Budapest, Hungary
+## 68                                                      MOR, Museum of the Rockies, Bozeman, Montana, USA
+## 69                                                          NHM, Natural History Museum of Guangxi, China
+## 70                       IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 71                                                              MU, University of Missouri, Columbia, USA
+## 72                                                  YPM, Yale Peabody Museum, New Haven, Connecticut, USA
+## 73                                                                                                 UNPSJB
+## 74                           IRSNB, Institut royal des Sciences naturelles de Belgique, Brussels, Belgium
+## 75                                                      MOR, Museum of the Rockies, Bozeman, Montana, USA
+## 76                                                      MOR, Museum of the Rockies, Bozeman, Montana, USA
+## 77                                                USNM, United States National Museum, Washington DC, USA
+## 78                                              MNHN, Musee Nationale d&#39;Histoire Naturelle, Paris, France
+## 79                                                                                                       
+## 80                                          TMP, Royal Tyrrell Museum of Paleontology, Drumheller, Canada
+## 81                                                                                                       
+## 82                                                         CMN, Canadian Museum of Nature, Ottawa, Canada
+## 83                                                  FMNH, Field Museum of Natural History, Chicago, U.S.A
+## 84                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 85    PVL, Fundaci\xf3n-Instituto Miguel Lillo, Universidad Nacional de Tucum\xe1n, Tucum\xe1n, Argentina
+## 86                                                   BMNH, Natural History Museum, London, United Kingdom
+## 87           MPC, Mongolian Paleontological Center, Mongolian Academy of Sciences,\nUlaanbaatar, Mongolia
+## 88                            PIN, Paleontological Institute, Russian Academy of Sciences, Moscow, Russia
+## 89                                                             ROM, Royal Ontario Museum, Toronto, Canada
+## 90                                                AMNH, American Museum of Natural History, New York, USA
+## 91                     LH, Long Hao Institute of Geology and\nPaleontology, Hohhot, Inner Mongolia, China
+## 92                                                AMNH, American Museum of Natural History, New York, USA
+## 93                       IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 94                       IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 95                                                AMNH, American Museum of Natural History, New York, USA
+## 96                                              MNHN, Musee Nationale d&#39;Histoire Naturelle, Paris, France
+## 97           MPC, Mongolian Paleontological Center, Mongolian Academy of Sciences,\nUlaanbaatar, Mongolia
+## 98                                                AMNH, American Museum of Natural History, New York, USA
+## 99                                                   BMNH, Natural History Museum, London, United Kingdom
+## 100                 MCZ, Museum of Comparative Zoology, Harvard Unviersity, Cambridge, Massachusetts, USA
+## 101                                         TMP, Royal Tyrrell Museum of Paleontology, Drumheller, Canada
+## 102                                                                                                   SMA
+## 103                                                 YPM, Yale Peabody Museum, New Haven, Connecticut, USA
+## 104                                                                                                   GZG
+## 105                                               SAM, South African Iziko Museum, Capetown, South Africa
+## 106                                                  BMNH, Natural History Museum, London, United Kingdom
+## 107                                                        CMN, Canadian Museum of Nature, Ottawa, Canada
+## 108                           PIN, Paleontological Institute, Russian Academy of Sciences, Moscow, Russia
+## 109                                                 MPM, Museo Padre Molina, R\xedo Gallegos, Santa Cruz.
+## 110                      IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 111                                      FWMSH, Fort Worth Museum of Science and History, Fort Worth, USA
+## 112                             OMNH, Sam Noble Oklahoma Museum of Natural History, Norman, Oklahoma, USA
+## 113                                                                         SC, Italian State collections
+## 114                                          RSM, Royal Saskatchewan Museum, Regina, Saskatchewan, Canada
+## 115                                               AMNH, American Museum of Natural History, New York, USA
+## 116                                               STMN, Shandong Tianyu Museum of Nature, Shandong, China
+## 117                      IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 118                      IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 119             CCMGE, Chernyshev\x92s Central Museum of Geological Exploration, Saint Petersburg, Russia
+## 120                           PIN, Paleontological Institute, Russian Academy of Sciences, Moscow, Russia
+## 121                                                    CM, Carnegie Museum, Pittsburgh, Pennsylvania, USA
+## 122                      IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 123                               MPCA (Museo Carlos Ameghino, Cipolletti, Rio Negro Province, Argentina)
+## 124                      IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 125                      IVPP, Institute of Vertebrate Paleontology and Paleoanthropology, Beijing, China
+## 126                                                              ZMNH, Zhejiang Museum of Natural History
+## 127                                                  BMNH, Natural History Museum, London, United Kingdom
+## 128                                                              ZMNH, Zhejiang Museum of Natural History
+##                                                                               Specimen
+## 1                                                                          IVPP V12060
+## 2                                                    NHM RU B.54 (type); Thulborn 1974
+## 3                                                                              MOR 591
+## 4                                                                             ZDM 6011
+## 5                                                                           OMNH 10081
+## 6                                                                          SMP VP-1930
+## 7                                                                          SDNHM 33909
+## 8                                                                          MCF-PVPH-74
+## 9                                                                             CMN 8547
+## 10                                                                          CEUM 6228R
+## 11                                                                           AMNH 5214
+## 12                                                                      CAGS-IG-VD-003
+## 13                                                                MPZ 2008/336 and 337
+## 14                                                                           AMNH 6553
+## 15                                                                       MPC-D 100/506
+## 16                                                                             MOR 794
+## 17                                                                            ROM 5090
+## 18                                                                            YPM 2015
+## 19                                                                             MOR 300
+## 20                                                                             ROM 839
+## 21                                                                            CMN 2280
+## 22                                                                            CV 00205
+## 23                                                                            YPM 1190
+## 24                                                                           AMNH 5240
+## 25                                                                             ROM 845
+## 26                                                                        BXGM V0012-1
+## 27                                                                             LPM 101
+## 28                                                                            YPM 1876
+## 29                                                                             ROM 784
+## 30                                                                            CMN 8531
+## 31                                                                            ROM 1215
+## 32                                                                        SAM-PK-K8025
+## 33                                                                           AMNH 5404
+## 34                                                                         LACM 120478
+## 35                                                                          DMNH 27726
+## 36                                                                           MUCPv-219
+## 37                                                                           CEUM 3646
+## 38                                                                            MPG-PBCH
+## 39                                                                            ZDM 0019
+## 40                                                               AMNH FARB 30728/30741
+## 41                                                                          IVPP V8303
+## 42                                                                      ZPAL MgD-I/156
+## 43                                                                           AMNH 5465
+## 44                                                                           AMNH 5350
+## 45                                                                        IGM 100/2015
+## 46                                                                        SAM-PK-K1332
+## 47                                                                           ZDM T6002
+## 48                                                                           ZDM T6001
+## 49                                                                      MPC-D 100/1201
+## 50                                                                           USNM 4757
+## 51                                                                    MTM 2007.25.1-30
+## 52                                                                     BMNH R1106-1107
+## 53                                                                            CMN 8501
+## 54                                                                           BMNH R192
+## 55                                                                           IVPP V???
+## 56                                                                         IVPP V12691
+## 57  HMN, mounted composite skeleton including material (here femur) from the lectotype
+## 58                                                                            ROM 1218
+## 59                                                                          TMP 66.4.1
+## 60                                                                           AMNH 5205
+## 61                                                                          BMNH RUB17
+## 62                                                                          BMNH R3167
+## 63                                                                           ROM 44770
+## 64                                                                           IRSNB R57
+## 65                                                                          IVPP V5542
+## 66                                                                           QM F18101
+## 67                                           MTM 2012.23.1 (humerus), V 01.225 (femur)
+## 68                                                                             MOR 300
+## 69                                                                            NHMG8142
+## 70                                                                         IVPP V11821
+## 71                                                                            MU 650VP
+## 72                                                                            YPM 1815
+## 73                                                                     UNPSJB - PV 942
+## 74                                                                       Cast at IRSNB
+## 75                                                                             MOR 473
+## 76                                                                           MOR 1636a
+## 77                                                                           USNM 8397
+## 78                                                                         GDF 300/381
+## 79                                                              Triebold specimen cast
+## 80                                                                            TMP ????
+## 81                                                                                    
+## 82                                                                            CMN 2759
+## 83                                                                         FMNH P27393
+## 84                                                                             ROM 804
+## 85                                                                            PVL 2577
+## 86                                                                           BMNH R175
+## 87                                                                      MPC-D 100/1204
+## 88                                                                       PIN 2232/18-9
+## 89                                                                             ROM 787
+## 90                                                                           AMNH 6424
+## 91                                                                              LH PV2
+## 92                                                                           AMNH 6253
+## 93                                                                      IVPP 12-0888-2
+## 94                                                                       IVPP V740-741
+## 95                                                                           AMNH 6541
+## 96                                                                         MNHN uncat.
+## 97                                                                      MPC-D 100/1305
+## 98                                                                           AMNH 3032
+## 99                                                                          BMNH R1111
+## 100                                                                           MCZ 8797
+## 101                                                          TMP 93.6.3 (cast of UA 2)
+## 102                                                                           SMA 0018
+## 103                                                                           YPM 1387
+## 104                                                                          GZG 741/2
+## 105                                                                        SAM-PK-1107
+## 106                                                                 BMNH R11011 (cast)
+## 107                                                                            CMN 344
+## 108                                                                          PIN 557-3
+## 109                                                                       MPM\x9610001
+## 110                                                                           IVPP ???
+## 111                                                                         FWMSH 93B1
+## 112                                                                              OU 11
+## 113                                                                           SC 57021
+## 114                                                                         RSM 1225.1
+## 115                                                                          AMNH 5891
+## 116                                                                          STMN 26-3
+## 117                                                                        IVPP V11276
+## 118                                                               IVPP Mount/IVPP V729
+## 119                                                                    CCMGE 251/12457
+## 120                                                                        PIN 3907/11
+## 121                                                                           CM 11337
+## 122                                                                         IVPP V4447
+## 123                                                                      MPCA-Pv SM 33
+## 124                                                                        IVPP V6730A
+## 125                                                                        IVPP V17530
+## 126                                                                         ZMNH M8620
+## 127                                                                          BMNH 3814
+## 128                                                                         ZMNH M8718
+##     FCoval HCoval      FCe FCe_meserr
+## 1       NA     NA 309.0000 0.00000000
+## 2    23.06     NA  25.1300 0.02510000
+## 3   242.86     NA 258.0000 0.00000000
+## 4       NA     NA  77.1700 0.05930000
+## 5       NA     NA 325.0000 0.00000000
+## 6       NA 158.75 191.1700 0.02708863
+## 7       NA     NA 311.1800 0.04680000
+## 8       NA     NA  74.5000 0.00000000
+## 9       NA 261.36 295.0800 0.03970000
+## 10      NA     NA 193.0000 0.00000000
+## 11  341.65 312.86 363.0000 0.00000000
+## 12   38.49     NA  41.5800 0.02490000
+## 13      NA 149.01 264.0200 0.04180000
+## 14  347.55     NA 339.0000 0.00000000
+## 15      NA     NA  42.3800 0.05630000
+## 16      NA     NA 440.0000 0.00000000
+## 17  297.22 137.40 275.0000 0.00000000
+## 18  289.63     NA 286.0000 0.00000000
+## 19      NA  91.13 122.4400 0.04350000
+## 20  305.74 229.76 325.0000 0.00000000
+## 21  274.48 254.56 312.0000 0.00000000
+## 22      NA     NA 316.2900 0.04680000
+## 23      NA     NA 258.2600 0.04180000
+## 24      NA     NA 419.6700 0.04140000
+## 25  306.60 233.86 365.0000 0.00000000
+## 26      NA     NA 154.1800 0.04740000
+## 27      NA     NA 203.5900 0.04710000
+## 28  129.45  62.24 138.0000 0.00000000
+## 29  242.81     NA 273.0000 0.00000000
+## 30      NA 229.86 276.0000 0.00000000
+## 31      NA 202.76 239.0300 0.02720000
+## 32   34.12     NA  36.9300 0.02490000
+## 33      NA     NA 278.0000 0.00000000
+## 34      NA     NA  19.6000 0.00000000
+## 35  209.77 173.14 193.0000 0.00000000
+## 36      NA     NA  55.0000 0.00000000
+## 37      NA     NA 258.0000 0.00000000
+## 38   38.84     NA  41.9500 0.02480000
+## 39  234.56 212.13 278.0000 0.00000000
+## 40      NA     NA 280.0000 0.00000000
+## 41      NA     NA  39.3000 0.00000000
+## 42   32.99     NA  35.7300 0.02490000
+## 43  391.95     NA 397.5000 0.00000000
+## 44  451.52 192.10 445.0000 0.00000000
+## 45      NA     NA  57.3566 0.04860000
+## 46      NA     NA  40.1700 0.05940000
+## 47      NA     NA  92.6100 0.08980000
+## 48   48.83  27.91  52.5300 0.02480000
+## 49      NA     NA  83.0000 0.00000000
+## 50  213.04     NA 210.0000 0.00000000
+## 51      NA     NA 175.0000 0.00000000
+## 52      NA 191.65 228.4900 0.02710000
+## 53      NA     NA 395.0000 0.00000000
+## 54   68.18     NA  70.0000 0.00000000
+## 55      NA     NA  50.2000 0.00000000
+## 56      NA     NA 228.8600 0.04210000
+## 57  230.64 191.84 245.0000 0.00000000
+## 58  347.06 215.95 367.5000 0.00000000
+## 59      NA 179.56 385.3500 0.04140000
+## 60      NA     NA 162.0000 0.00000000
+## 61   37.23     NA  43.0000 0.00000000
+## 62  308.78 238.13 300.0000 0.00000000
+## 63      NA 187.41 410.0000 0.00000000
+## 64  269.07 165.73 270.0000 0.00000000
+## 65   37.02     NA  42.0000 0.00000000
+## 66  132.26 106.85 139.9000 0.02450000
+## 67      NA     NA  77.0000 0.00000000
+## 68  120.26  83.81 122.5000 0.00000000
+## 69      NA     NA 375.1100 0.04140000
+## 70  205.96     NA 216.0000 0.00000000
+## 71  196.43 198.23 206.3800 0.02450000
+## 72  261.80     NA 288.0000 0.00000000
+## 73      NA     NA  79.7900 0.08970000
+## 74      NA     NA 395.0000 0.00000000
+## 75   57.24  36.18  65.0000 0.00000000
+## 76      NA     NA  97.8100 0.08980000
+## 77   56.82     NA  61.0000 0.00000000
+## 78  292.40 143.92 305.1400 0.02450000
+## 79      NA     NA 189.0000 0.00000000
+## 80      NA     NA 385.0000 0.00000000
+## 81      NA     NA 318.0200 0.03980000
+## 82      NA 190.48 229.6600 0.02720000
+## 83  419.72 249.58 445.0000 0.00000000
+## 84  100.63  66.92 103.0000 0.00000000
+## 85   75.43     NA  80.5500 0.02460000
+## 86      NA     NA 206.0000 0.00000000
+## 87      NA     NA  99.0000 0.00000000
+## 88  305.66     NA 318.7400 0.02450000
+## 89  311.65 191.34 355.0000 0.00000000
+## 90   90.01     NA  93.0000 0.00000000
+## 91      NA     NA  50.6178 0.04870000
+## 92      NA     NA  57.9000 0.05930000
+## 93      NA     NA  47.8000 0.00000000
+## 94      NA     NA  38.2223 0.04900000
+## 95   71.79     NA  74.5000 0.00000000
+## 96      NA     NA 232.3700 0.04190000
+## 97      NA     NA 166.0000 0.00000000
+## 98  302.12 265.24 317.0000 0.00000000
+## 99  166.64     NA 174.0000 0.00000000
+## 100  49.94     NA  53.7100 0.02480000
+## 101  58.77     NA  60.5000 0.00000000
+## 102     NA     NA 345.0000 0.00000000
+## 103 345.42     NA 366.0000 0.00000000
+## 104     NA     NA  74.0200 0.03760000
+## 105  83.26     NA  88.7600 0.02460000
+## 106  88.67     NA  96.0000 0.00000000
+## 107     NA     NA 365.0000 0.00000000
+## 108     NA     NA 193.9600 0.05370000
+## 109     NA     NA 160.9600 0.04330000
+## 110     NA     NA 346.0000 0.00000000
+## 111     NA     NA 235.6500 0.04190000
+## 112     NA     NA 227.5000 0.00000000
+## 113     NA     NA 147.2900 0.04370000
+## 114     NA     NA 121.0000 0.00000000
+## 115 184.65 105.88 183.0000 0.00000000
+## 116  19.32     NA  21.1200 0.02520000
+## 117     NA     NA 219.7200 0.04700000
+## 118     NA     NA 425.0000 0.00000000
+## 119     NA 141.81 204.6100 0.03692935
+## 120     NA     NA 185.2400 0.04080000
+## 121     NA  80.49 172.0000 0.00000000
+## 122     NA     NA  33.0000 0.00000000
+## 123     NA     NA 385.3500 0.04140000
+## 124     NA     NA  40.3100 0.03780000
+## 125     NA     NA  71.0000 0.00000000
+## 126  35.38  22.52  38.2700 0.02490000
+## 127 117.00  79.12 125.0000 0.00000000
+## 128 223.95     NA 234.7700 0.02450000
+##                                                       FCe_method    HCe
+## 1                                                       measured 134.50
+## 2             FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 3                                                       measured 194.38
+## 4       FC_for_bipedal_dinosaurs_using_FL_and_equations_.9...11.     NA
+## 5                                                       measured 220.00
+## 6                                 FC_for_thyreophorans_using_HCe 165.89
+## 7       FC_for_quadrupedal_dinosaurs_using_FML_and_equation_.15. 286.93
+## 8                                                       measured     NA
+## 9     FC_for_quadrupedal_ceratopsians_using_HL_and_equation_.27. 274.29
+## 10                                                      measured 155.00
+## 11                                                      measured 315.00
+## 12            FC_for_all_dinosaurs_using_FCoval_and_equation_.4.  26.95
+## 13  FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 155.62
+## 14                                                      measured 136.00
+## 15       FC_for_quadrupedal_dinosaurs_using_FL_and_equation_.16.  16.08
+## 16                                                      measured 221.00
+## 17                                                      measured 150.00
+## 18                                                      measured 249.00
+## 19    FC_for_quadrupedal_ceratopsians_using_HL_and_equation_.27.  94.77
+## 20                                                      measured 254.00
+## 21                                                      measured 270.00
+## 22      FC_for_quadrupedal_dinosaurs_using_FML_and_equation_.15. 263.47
+## 23  FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 170.46
+## 24  FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 236.08
+## 25                                                      measured 237.50
+## 26      FC_for_quadrupedal_dinosaurs_using_FML_and_equation_.15. 113.92
+## 27      FC_for_quadrupedal_dinosaurs_using_FML_and_equation_.15. 156.09
+## 28                                                      measured  63.00
+## 29                                                      measured 237.81
+## 30                                                      measured 240.00
+## 31               FC_for_thyreophorans_using_HC_and_equation_.23. 209.00
+## 32            FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 33                                                      measured 244.00
+## 34                                                      measured     NA
+## 35                                                      measured 175.00
+## 36                                                      measured     NA
+## 37                                                      measured 177.00
+## 38            FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 39                                                      measured 235.00
+## 40                                                      measured 142.00
+## 41                                                      measured     NA
+## 42            FC_for_all_dinosaurs_using_FCoval_and_equation_.4.  26.25
+## 43                                                      measured 251.00
+## 44                                                      measured 208.00
+## 45           FC_for_bipedal_dinosaurs_using_FAP_and_equation_.8.     NA
+## 46      FC_for_bipedal_dinosaurs_using_FL_and_equations_.9...11.     NA
+## 47     FC_for_bipedal_dinosaurs_using_TL_and_equations_.12...14.     NA
+## 48            FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 49                                                      measured     NA
+## 50                                                      measured 184.12
+## 51                                                      measured 160.00
+## 52               FC_for_thyreophorans_using_HC_and_equation_.23. 200.00
+## 53                                                      measured 222.00
+## 54                                                      measured  50.00
+## 55                                                      measured     NA
+## 56  FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 176.70
+## 57                                                      measured 210.00
+## 58                                                      measured 225.00
+## 59  FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 187.83
+## 60                                                      measured 117.00
+## 61                                                      measured  20.00
+## 62                                                      measured 261.00
+## 63                                                      measured 205.00
+## 64                                                      measured 167.00
+## 65                                                      measured     NA
+## 66            FC_for_all_dinosaurs_using_FCoval_and_equation_.4. 111.27
+## 67                                                      measured  43.00
+## 68                                                      measured  86.30
+## 69  FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 255.35
+## 70                                                      measured 114.00
+## 71            FC_for_all_dinosaurs_using_FCoval_and_equation_.4. 207.54
+## 72                                                      measured 250.55
+## 73     FC_for_bipedal_dinosaurs_using_TL_and_equations_.12...14.     NA
+## 74                                                      measured 248.00
+## 75                                                      measured  38.00
+## 76     FC_for_bipedal_dinosaurs_using_TL_and_equations_.12...14.     NA
+## 77                                                      measured     NA
+## 78            FC_for_all_dinosaurs_using_FCoval_and_equation_.4. 150.26
+## 79                                                      measured     NA
+## 80                                                      measured 275.00
+## 81    FC_for_quadrupedal_ceratopsians_using_HL_and_equation_.27. 251.47
+## 82               FC_for_thyreophorans_using_HC_and_equation_.23. 201.00
+## 83                                                      measured 241.00
+## 84                                                      measured  72.00
+## 85            FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 86                                                      measured 180.69
+## 87                                                      measured     NA
+## 88            FC_for_all_dinosaurs_using_FCoval_and_equation_.4. 122.47
+## 89                                                      measured 225.00
+## 90                                                      measured  62.00
+## 91           FC_for_bipedal_dinosaurs_using_FAP_and_equation_.8.     NA
+## 92      FC_for_bipedal_dinosaurs_using_FL_and_equations_.9...11.     NA
+## 93                                                      measured  36.00
+## 94           FC_for_bipedal_dinosaurs_using_FAP_and_equation_.8.     NA
+## 95                                                      measured     NA
+## 96  FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 143.91
+## 97                                                      measured 155.00
+## 98                                                      measured 256.00
+## 99                                                      measured 153.26
+## 100           FC_for_all_dinosaurs_using_FCoval_and_equation_.4.  48.93
+## 101                                                     measured     NA
+## 102                                                     measured 330.00
+## 103                                                     measured 316.53
+## 104          FC_for_bipedal_dinosaurs_using_FML_and_equation_.6.     NA
+## 105           FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 106                                                     measured  85.80
+## 107                                                     measured 280.00
+## 108      FC_for_quadrupedal_dinosaurs_using_FL_and_equation_.16. 161.61
+## 109 FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 130.92
+## 110                                                     measured 208.00
+## 111 FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 124.64
+## 112                                                     measured 159.00
+## 113 FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 111.42
+## 114                                                     measured     NA
+## 115                                                     measured 108.00
+## 116           FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 117     FC_for_quadrupedal_dinosaurs_using_FML_and_equation_.15. 139.38
+## 118                                                     measured 250.00
+## 119                    FC_for_quadrupedal_ceratopsians_using_HCe 148.04
+## 120   FC_for_quadrupedal_ceratopsians_using_HL_and_equation_.27. 164.09
+## 121                                                     measured  94.00
+## 122                                                     measured  16.00
+## 123 FC_for_quadrupedal_iguanodontians_using_FL_and_equation_.30. 220.86
+## 124          FC_for_bipedal_dinosaurs_using_FML_and_equation_.6.     NA
+## 125                                                     measured  45.00
+## 126           FC_for_all_dinosaurs_using_FCoval_and_equation_.4.     NA
+## 127                                                     measured  83.00
+## 128           FC_for_all_dinosaurs_using_FCoval_and_equation_.4. 205.66
+##     HCe_meserr                                                    HCe_method
+## 1   0.00000000                                                      measured
+## 2           NA                                                              
+## 3   0.03910000    HC_for_quadrupedal_ceratopsians_using_FC_and_equation_.28.
+## 4           NA                                                              
+## 5   0.00000000                                                      measured
+## 6   0.02030000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 7   0.03240000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 8           NA                                                              
+## 9   0.02030000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 10  0.00000000                                                      measured
+## 11  0.00000000                                                      measured
+## 12  0.05548300                     HC_for_quadrupedal_ceratopsians_using_FCe
+## 13  0.02030000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 14  0.00000000                                                      measured
+## 15  0.09030000    HC_for_quadrupedal_ceratopsians_using_HL_and_equation_.29.
+## 16  0.00000000                                                      measured
+## 17  0.00000000                                                      measured
+## 18  0.00000000                                                      measured
+## 19  0.02020000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 20  0.00000000                                                      measured
+## 21  0.00000000                                                      measured
+## 22  0.03240000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 23  0.04570000 HC_for_quadrupedal_iguanodontians_using_HAP_and_equation_.34.
+## 24  0.05130000  HC_for_quadrupedal_iguanodontians_using_HL_and_equation_.35.
+## 25  0.00000000                                                      measured
+## 26  0.03320000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 27  0.03280000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 28  0.00000000                                                      measured
+## 29  0.02650000               HC_for_thyreophorans_using_FC_and_equation_.25.
+## 30  0.00000000                                                      measured
+## 31  0.00000000                                                      measured
+## 32          NA                                                              
+## 33  0.00000000                                                      measured
+## 34          NA                                                              
+## 35  0.00000000                                                      measured
+## 36          NA                                                              
+## 37  0.00000000                                                      measured
+## 38          NA                                                              
+## 39  0.00000000                                                      measured
+## 40  0.00000000                                                      measured
+## 41          NA                                                              
+## 42  0.03680000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 43  0.00000000                                                      measured
+## 44  0.00000000                                                      measured
+## 45          NA                                                              
+## 46          NA                                                              
+## 47          NA                                                              
+## 48          NA                                                              
+## 49          NA                                                              
+## 50  0.02650000               HC_for_thyreophorans_using_FC_and_equation_.25.
+## 51  0.00000000                                                      measured
+## 52  0.00000000                                                      measured
+## 53  0.00000000                                                      measured
+## 54  0.00000000                                                      measured
+## 55          NA                                                              
+## 56  0.03270000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 57  0.00000000                                                      measured
+## 58  0.00000000                                                      measured
+## 59  0.02030000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 60  0.00000000                                                      measured
+## 61  0.00000000                                                      measured
+## 62  0.00000000                                                      measured
+## 63  0.00000000                                                      measured
+## 64  0.00000000                                                      measured
+## 65          NA                                                              
+## 66  0.02020000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 67  0.00000000                                                      measured
+## 68  0.00000000                                                      measured
+## 69  0.04640000 HC_for_quadrupedal_iguanodontians_using_HAP_and_equation_.34.
+## 70  0.00000000                                                      measured
+## 71  0.02030000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 72  0.02660000               HC_for_thyreophorans_using_FC_and_equation_.25.
+## 73          NA                                                              
+## 74  0.00000000                                                      measured
+## 75  0.00000000                                                      measured
+## 76          NA                                                              
+## 77          NA                                                              
+## 78  0.02030000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 79          NA                                                              
+## 80  0.00000000                                                      measured
+## 81  0.05760000    HC_for_quadrupedal_ceratopsians_using_HL_and_equation_.29.
+## 82  0.00000000                                                      measured
+## 83  0.00000000                                                      measured
+## 84  0.00000000                                                      measured
+## 85          NA                                                              
+## 86  0.02640000               HC_for_thyreophorans_using_FC_and_equation_.25.
+## 87          NA                                                              
+## 88  0.03310000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 89  0.00000000                                                      measured
+## 90  0.00000000                                                      measured
+## 91          NA                                                              
+## 92          NA                                                              
+## 93  0.00000000                                                      measured
+## 94          NA                                                              
+## 95          NA                                                              
+## 96  0.05130000  HC_for_quadrupedal_iguanodontians_using_HL_and_equation_.35.
+## 97  0.00000000                                                      measured
+## 98  0.00000000                                                      measured
+## 99  0.02640000               HC_for_thyreophorans_using_FC_and_equation_.25.
+## 100 0.02603363                                HC_for_thyreophorans_using_FCe
+## 101         NA                                                              
+## 102 0.00000000                                                      measured
+## 103 0.02670000               HC_for_thyreophorans_using_FC_and_equation_.25.
+## 104         NA                                                              
+## 105         NA                                                              
+## 106 0.02620000               HC_for_thyreophorans_using_FC_and_equation_.25.
+## 107 0.00000000                                                      measured
+## 108 0.03270000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 109 0.05150000  HC_for_quadrupedal_iguanodontians_using_HL_and_equation_.35.
+## 110 0.00000000                                                      measured
+## 111 0.04670000 HC_for_quadrupedal_iguanodontians_using_HAP_and_equation_.34.
+## 112 0.00000000                                                      measured
+## 113 0.05200000  HC_for_quadrupedal_iguanodontians_using_HL_and_equation_.35.
+## 114         NA                                                              
+## 115 0.00000000                                                      measured
+## 116         NA                                                              
+## 117 0.03290000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 118 0.00000000                                                      measured
+## 119 0.02030000            HC_for_all_dinosaurs_using_HCoval_and_equation_.5.
+## 120 0.03270000      HC_for_quadrupedal_dinosaurs_using_HML_and_equation_.17.
+## 121 0.00000000                                                      measured
+## 122 0.00000000                                                      measured
+## 123 0.05120000  HC_for_quadrupedal_iguanodontians_using_HL_and_equation_.35.
+## 124         NA                                                              
+## 125 0.00000000                                                      measured
+## 126         NA                                                              
+## 127 0.00000000                                                      measured
+## 128 0.02649396                                HC_for_thyreophorans_using_FCe
+##             Mass Mass_lse..log10.
+## 1   1488.3355920        0.1508477
+## 2      1.4419896        0.1620300
+## 3   1571.7072930        0.2416572
+## 4     31.5190049        0.2286449
+## 5   2622.8331030        0.1525567
+## 6    820.0646821        0.2019113
+## 7   3386.8792770        0.2365055
+## 8     28.6107774        0.1350000
+## 9   2958.0258990        0.2762856
+## 10   764.1182987        0.1502213
+## 11  4780.7391440        0.1530488
+## 12     8.7697542        0.2220897
+## 13  1278.4147000        0.2374122
+## 14  1797.3382210        0.1514726
+## 15     5.6653379        0.3312789
+## 16  4458.3604880        0.1517364
+## 17  1323.8110750        0.1508479
+## 18  2492.6359140        0.1517799
+## 19   209.1132473        0.2624842
+## 20  3097.6174960        0.1532154
+## 21  3141.9434430        0.1531302
+## 22  3108.8088490        0.2366389
+## 23  1355.9122340        0.2755240
+## 24  4361.6813380        0.3125371
+## 25  3455.6634760        0.1523735
+## 26   373.0042803        0.2294033
+## 27   836.7146317        0.2304778
+## 28   168.9565248        0.1516310
+## 29  2194.8934610        0.2223649
+## 30  2256.7513090        0.1496493
+## 31  1530.5051680        0.2240474
+## 32     4.1553534        0.1637303
+## 33  2329.6322280        0.1511875
+## 34     0.7281370        0.1350000
+## 35   891.0089449        0.1519153
+## 36    12.4219637        0.1350000
+## 37  1411.2202040        0.1498379
+## 38     5.8991404        0.1642649
+## 39  2220.8619520        0.1523067
+## 40  1298.2784920        0.1519432
+## 41     4.9303225        0.1350000
+## 42     6.6533137        0.1938567
+## 43  4230.3807930        0.1514885
+## 44  4311.5769940        0.1529827
+## 45    13.9406904        0.2022455
+## 46     5.2362352        0.2284884
+## 47    52.0406171        0.3031233
+## 48    10.9478109        0.1664032
+## 49    38.5062803        0.1350000
+## 50  1075.8652050        0.2165649
+## 51   688.1808134        0.1516701
+## 52  1353.9132780        0.2230637
+## 53  3689.1513140        0.1531174
+## 54    24.1067466        0.1350000
+## 55     9.6639807        0.1350000
+## 56  1163.9179300        0.2448402
+## 57  1596.8602150        0.1526575
+## 58  3300.2561870        0.1523587
+## 59  3012.7643260        0.2464461
+## 60   416.1950678        0.1505364
+## 61     6.3140280        0.1350000
+## 62  2840.0061500        0.1533872
+## 63  3656.3674190        0.1529776
+## 64  1429.1304590        0.1522326
+## 65     5.9184913        0.1350000
+## 66   311.7661162        0.1949963
+## 67    40.9159118        0.1504151
+## 68   187.6000751        0.1511292
+## 69  3914.6585350        0.2835511
+## 70   660.3090989        0.1531490
+## 71  1231.0754630        0.1974133
+## 72  2538.3733810        0.2253759
+## 73    34.5491347        0.3037637
+## 74  4132.4708610        0.1523609
+## 75    19.6631649        0.1350000
+## 76    60.4742491        0.3051735
+## 77    16.5127039        0.1350000
+## 78  1600.7227340        0.1943233
+## 79   369.9003256        0.1350000
+## 80  4439.8413750        0.1514862
+## 81  2959.7402120        0.4028791
+## 82  1372.8477440        0.2248354
+## 83  4937.4318530        0.1512032
+## 84    69.7112795        0.1350000
+## 85    35.4614296        0.1657748
+## 86  1021.0181830        0.2186741
+## 87    62.5186517        0.1350000
+## 88  1467.3026150        0.2036222
+## 89  3112.3482970        0.1531748
+## 90    82.6946823        0.1477941
+## 91     9.8867213        0.2020723
+## 92    14.3068219        0.2289392
+## 93     8.4462232        0.1350000
+## 94     4.5674686        0.1996508
+## 95    28.6107774        0.1350000
+## 96   947.2167502        0.3043552
+## 97   611.9715830        0.1498100
+## 98  3010.1638750        0.1513185
+## 99   645.3451457        0.2164036
+## 100   26.6263993        0.1950305
+## 101   16.1432491        0.1350000
+## 102 4722.8061820        0.1522606
+## 103 4869.0714640        0.2266567
+## 104   28.1068295        0.1820936
+## 105   46.3066986        0.1641749
+## 106  128.2034551        0.2065057
+## 107 4167.9057390        0.1514256
+## 108  810.6906139        0.2505008
+## 109  471.1763403        0.2997503
+## 110 2743.6399060        0.1515387
+## 111  840.6217468        0.2729066
+## 112 1019.6395180        0.1513569
+## 113  338.1776030        0.2998912
+## 114  108.5453242        0.1350000
+## 115  338.5050332        0.1350000
+## 116    0.8941169        0.1645684
+## 117  833.0104042        0.2318961
+## 118 4722.8061820        0.1523287
+## 119  792.5183121        0.2263935
+## 120  772.1740304        0.2729288
+## 121  365.0265775        0.1508194
+## 122    3.0497389        0.1350000
+## 123 3514.4808890        0.3148802
+## 124    5.2865609        0.1832635
+## 125   25.0654269        0.1350000
+## 126    4.5831568        0.1614459
+## 127  185.6305689        0.1525634
+## 128 1460.1819840        0.2093331</code></pre>
+<pre class="r"><code>#Left off on Data Manipulation 2 video</code></pre>
 </div>
 
 
