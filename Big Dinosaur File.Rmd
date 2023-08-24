@@ -1,0 +1,46 @@
+---
+title: "Big Dinosaur File"
+author: "Hayden Ginman"
+date: "2023-08-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+# Step 1 - Load libraries into coding environment
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+
+library("dplyr")
+library("reshape2")
+# Step 2 - Import data into coding environment
+bdf <- read.csv("Intro Pt 5 Data.csv")
+
+# Step 3 - Inspect data to ensure it was imported correctly
+head(bdf)
+
+# Step 4 - Get mean of the Mass column
+
+bdf %>%
+  summarize(Mean = mean(Mass, na.rm = TRUE))
+
+# Step 5 - Utilize group_by function to combine all clades and calculate mean for all of them at once.
+
+bdf %>%
+  group_by(Clade)%>%
+  summarize(Mean = mean(Mass, na.rm = TRUE))
+
+#Step 6 - Add an additional grouping (Median)
+
+bdf %>%
+  group_by(Clade)%>%
+  summarize(Mean = mean(Mass, na.rm = TRUE), Median = median(Mass, na.rm = TRUE))
+```
