@@ -2166,7 +2166,292 @@ bdf %&gt;%
 ## 126    4.5831568        0.1614459
 ## 127  185.6305689        0.1525634
 ## 128 1460.1819840        0.2093331</code></pre>
-<pre class="r"><code>#Left off on Data Manipulation 2 video</code></pre>
+<pre class="r"><code>#Step 8 - Advanced filtering with Grepl (Search for a pattern match)
+
+bdf1 &lt;- bdf%&gt;%
+  filter(grepl(&quot;saurus&quot;, Taxon))
+
+#Step 9 - More advanced filtering examples
+
+bdf %&gt;%
+  filter(Clade != &quot;Dinosauromorpha&quot;) %&gt;%
+  group_by(Clade, Subclade) %&gt;%
+  summarize(Mean = mean(Mass, na.rm = TRUE), Median = median(Mass, na.rm = TRUE))</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Clade&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 30 × 4
+## # Groups:   Clade [3]
+##    Clade           Subclade              Mean  Median
+##    &lt;chr&gt;           &lt;chr&gt;                &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Ornithischia    Ankylosauria        1462.   1153. 
+##  2 Ornithischia    Ceratopsia           171.     25.1
+##  3 Ornithischia    Ceratopsidae        6004.   4168. 
+##  4 Ornithischia    Hadrosauroidea      3997.   3673. 
+##  5 Ornithischia    Iguanodontia        3046.   1172. 
+##  6 Ornithischia    Ornithischia          34.0    13.9
+##  7 Ornithischia    Pachycephalosauria    98.0    38.5
+##  8 Ornithischia    Stegosauria         4644.   4796. 
+##  9 Ornithischia    Thyreophora          336.    336. 
+## 10 Sauropodomorpha Diplodocoidea      16610.  13860. 
+## # ℹ 20 more rows</code></pre>
+<pre class="r"><code>#Step 10 - Slice Example (Slice takes only the rows that meet that criteria, but does then according to the grouping function.)
+
+bdf %&gt;%
+  filter(Clade != &quot;Dinosauromorpha&quot;) %&gt;%
+  group_by(Clade, Subclade) %&gt;%
+  slice(which.max(Mass))</code></pre>
+<pre><code>## # A tibble: 30 × 37
+## # Groups:   Clade, Subclade [30]
+##    Index Taxon      Name_in_tree Clade Subclade Subclade_2 Max_age Min_age    FL
+##    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+##  1   703 Ankylosau… Ankylosauru… Orni… Ankylos… Ankylosau… Late_M… Late_M…   660
+##  2   957 Turanocer… Turanocerat… Orni… Ceratop… Ceratopsi… Late_T… Late_T…    NA
+##  3   950 Tricerato… not          Orni… Ceratop… Ceratopsi… Late_M… Late_M…  1037
+##  4   914 Shantungo… Shantungosa… Orni… Hadrosa… Hadrosaur… Campan… Campan…  1700
+##  5   806 Iguanodon… Iguanodon_s… Orni… Iguanod… Iguanodon… Barrem… Early_…    NA
+##  6   946 Thescelos… Thescelosau… Orni… Ornithi… Ornithisc… Late_M… Late_M…   448
+##  7   865 Pachyceph… Pachycephal… Orni… Pachyce… Pachyceph… Late_M… Late_M…   441
+##  8   744 Dacentrur… Dacentrurus… Orni… Stegosa… Stegosaur… Late_K… Late_K…  1232
+##  9   909 Scelidosa… Scelidosaur… Orni… Thyreop… Thyreopho… Sinemu… Sinemu…   400
+## 10    33 Apatosaur… Apatosaurus… Saur… Diplodo… Diplodoco… Kimmer… Tithon…  1785
+## # ℹ 20 more rows
+## # ℹ 28 more variables: FC &lt;dbl&gt;, FML &lt;dbl&gt;, FAP &lt;dbl&gt;, TL_TLE &lt;dbl&gt;, TC &lt;dbl&gt;,
+## #   HL &lt;dbl&gt;, HC &lt;dbl&gt;, HML &lt;dbl&gt;, HAP &lt;dbl&gt;, RC &lt;dbl&gt;, RL_RLE &lt;dbl&gt;,
+## #   MtL &lt;chr&gt;, Source &lt;chr&gt;, Age.notes &lt;chr&gt;, Juvenile &lt;int&gt;, Bonebed &lt;int&gt;,
+## #   Institution &lt;chr&gt;, Specimen &lt;chr&gt;, FCoval &lt;dbl&gt;, HCoval &lt;dbl&gt;, FCe &lt;dbl&gt;,
+## #   FCe_meserr &lt;dbl&gt;, FCe_method &lt;chr&gt;, HCe &lt;dbl&gt;, HCe_meserr &lt;dbl&gt;,
+## #   HCe_method &lt;chr&gt;, Mass &lt;dbl&gt;, Mass_lse..log10. &lt;dbl&gt;</code></pre>
+<pre class="r"><code>#Step 11 - Select function example (Takes only those columns and drops all others from the data frame.)
+
+bdf %&gt;%
+  filter(Clade != &quot;Dinosauromorpha&quot;) %&gt;%
+  group_by(Clade, Subclade) %&gt;%
+  slice(which.min(Mass)) %&gt;%
+  select(Clade, Subclade, Mass)</code></pre>
+<pre><code>## # A tibble: 30 × 3
+## # Groups:   Clade, Subclade [30]
+##    Clade           Subclade               Mass
+##    &lt;chr&gt;           &lt;chr&gt;                 &lt;dbl&gt;
+##  1 Ornithischia    Ankylosauria        128.   
+##  2 Ornithischia    Ceratopsia            4.57 
+##  3 Ornithischia    Ceratopsidae       1572.   
+##  4 Ornithischia    Hadrosauroidea      338.   
+##  5 Ornithischia    Iguanodontia         40.9  
+##  6 Ornithischia    Ornithischia          0.728
+##  7 Ornithischia    Pachycephalosauria    3.05 
+##  8 Ornithischia    Stegosauria        1597.   
+##  9 Ornithischia    Thyreophora          26.6  
+## 10 Sauropodomorpha Diplodocoidea      3109.   
+## # ℹ 20 more rows</code></pre>
+<pre class="r"><code>#Step 12 - Long to wide format using dcast function
+
+#bdf1 &lt;- bdf %&gt;%
+  #filter(Clade != &quot;Dinosauromorpha&quot;) %&gt;%
+  #group_by(Clade, Subclade) %&gt;%
+  #summarize(Mean = mean(Mass, na.rm = TRUE), Median = median(Mass, na.rm = TRUE))
+
+#bdf2 &lt;- dcast(bdf1, Subclade ~ Clade, value.var = &quot;Mean&quot;)
+
+#Step 13 - Recreate table example
+
+bdf1 &lt;- bdf %&gt;%
+  filter(Clade != &quot;Dinosauromorpha&quot;) %&gt;%
+  group_by(Clade, Max_age) %&gt;%
+  summarize(Mean = mean(Mass, na.rm = TRUE)) %&gt;%
+  dcast(Max_age~Clade, value.var = &quot;Mean&quot;)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Clade&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>#Step 14 - Import Data for time
+read.csv(&quot;Time.csv&quot;)</code></pre>
+<pre><code>##                    Time max_ma min_ma     Period
+## 1   Early Maastrichtian  70.60  66.00 Cretaceous
+## 2           Edmontonian  70.60  66.00 Cretaceous
+## 3               Lancian  70.60  66.00 Cretaceous
+## 4    Late Maastrichtian  70.60  66.00 Cretaceous
+## 5         Maastrichtian  72.10  66.00 Cretaceous
+## 6       Early Campanian  83.50  70.60 Cretaceous
+## 7             Haumurian  83.50  66.00 Cretaceous
+## 8             Judithian  83.50  70.60 Cretaceous
+## 9        Late Campanian  83.50  70.60 Cretaceous
+## 10     Middle Campanian  83.50  70.60 Cretaceous
+## 11            Campanian  83.60  72.10 Cretaceous
+## 12      Early Santonian  85.80  83.50 Cretaceous
+## 13       Late Santonian  85.80  83.50 Cretaceous
+## 14     Middle Santonian  85.80  83.50 Cretaceous
+## 15            Piripauan  85.80  83.50 Cretaceous
+## 16            Santonian  86.30  83.60 Cretaceous
+## 17      Early Coniacian  89.30  85.80 Cretaceous
+## 18       Late Coniacian  89.30  85.80 Cretaceous
+## 19     Middle Coniacian  89.30  85.80 Cretaceous
+## 20             Senonian  89.30  66.00 Cretaceous
+## 21              Teratan  89.30  85.80 Cretaceous
+## 22            Coniacian  89.80  86.30 Cretaceous
+## 23         Mangaotanean  92.10  89.30 Cretaceous
+## 24       Early Turonian  93.50  89.30 Cretaceous
+## 25        Late Turonian  93.50  89.30 Cretaceous
+## 26      Middle Turonian  93.50  89.30 Cretaceous
+## 27             Turonian  93.90  89.80 Cretaceous
+## 28            Arowhanan  95.20  92.10 Cretaceous
+## 29     Early Cenomanian  99.60  93.50 Cretaceous
+## 30      Late Cenomanian  99.60  93.50 Cretaceous
+## 31    Middle Cenomanian  99.60  93.50 Cretaceous
+## 32            Ngaterian  99.60  95.20 Cretaceous
+## 33           Cenomanian 100.50  93.90 Cretaceous
+## 34      Late Cretaceous 100.50  66.00 Cretaceous
+## 35               Motuan 103.30  99.60 Cretaceous
+## 36          Late Albian 105.30  99.60 Cretaceous
+## 37             Urutawan 108.40 103.30 Cretaceous
+## 38        Middle Albian 109.00 105.30 Cretaceous
+## 39         Early Albian 112.03 109.00 Cretaceous
+## 40               Albian 113.00 100.50 Cretaceous
+## 41          Late Aptian 122.46 112.03 Cretaceous
+## 42               Aptian 125.00 113.00 Cretaceous
+## 43         Early Aptian 125.45 122.46 Cretaceous
+## 44            Barremian 129.40 125.00 Cretaceous
+## 45      Early Barremian 130.00 125.45 Cretaceous
+## 46       Late Barremian 130.00 125.45 Cretaceous
+## 47          Hauterivian 132.90 129.40 Cretaceous
+## 48    Early Hauterivian 136.40 130.00 Cretaceous
+## 49     Late Hauterivian 136.40 130.00 Cretaceous
+## 50          Valanginian 139.80 132.90 Cretaceous
+## 51    Early Valanginian 140.20 136.40 Cretaceous
+## 52     Late Valanginian 140.20 136.40 Cretaceous
+## 53           Berriasian 145.00 139.80 Cretaceous
+## 54           Cretaceous 145.00  66.00 Cretaceous
+## 55     Early Berriasian 145.00 140.20 Cretaceous
+## 56     Early Cretaceous 145.00 100.50 Cretaceous
+## 57      Late Berriasian 145.00 140.20 Cretaceous
+## 58    Middle Berriasian 145.00 140.20 Cretaceous
+## 59            Neocomian 145.00 130.00 Cretaceous
+## 60              Puaroan 148.50 145.00   Jurassic
+## 61      Early Tithonian 150.80 145.00   Jurassic
+## 62       Late Tithonian 150.80 145.00   Jurassic
+## 63     Middle Tithonian 150.80 145.00   Jurassic
+## 64            Tithonian 152.10 145.00   Jurassic
+## 65               Ohauan 153.50 148.50   Jurassic
+## 66   Early Kimmeridgian 155.70 150.80   Jurassic
+## 67    Late Kimmeridgian 155.70 150.80   Jurassic
+## 68         Kimmeridgian 157.30 152.10   Jurassic
+## 69      Early Oxfordian 161.20 155.70   Jurassic
+## 70             Heterian 161.20 153.50   Jurassic
+## 71       Late Oxfordian 161.20 155.70   Jurassic
+## 72     Middle Oxfordian 161.20 155.70   Jurassic
+## 73        Late Jurassic 163.50 145.00   Jurassic
+## 74            Oxfordian 163.50 157.30   Jurassic
+## 75      Early Callovian 164.70 161.20   Jurassic
+## 76       Late Callovian 164.70 161.20   Jurassic
+## 77     Middle Callovian 164.70 161.20   Jurassic
+## 78            Callovian 166.10 163.50   Jurassic
+## 79      Early Bathonian 167.70 164.70   Jurassic
+## 80       Late Bathonian 167.70 164.70   Jurassic
+## 81     Middle Bathonian 167.70 164.70   Jurassic
+## 82            Bathonian 168.30 166.10   Jurassic
+## 83             Bajocian 170.30 168.30   Jurassic
+## 84             Discites 171.60 167.70   Jurassic
+## 85       Early Bajocian 171.60 168.40   Jurassic
+## 86           Garantiana 171.60 167.70   Jurassic
+## 87        Humphresianum 171.60 168.40   Jurassic
+## 88           Kirschneri 171.60 168.40   Jurassic
+## 89          Laeviuscula 171.60 167.70   Jurassic
+## 90        Late Bajocian 171.60 167.70   Jurassic
+## 91              Oblatum 171.60 168.40   Jurassic
+## 92           Parkinsoni 171.60 167.70   Jurassic
+## 93               Sauzei 171.60 167.70   Jurassic
+## 94          Subfurcatum 171.60 167.70   Jurassic
+## 95             Aalenian 174.10 170.30   Jurassic
+## 96      Middle Jurassic 174.10 163.50   Jurassic
+## 97             Concavum 175.60 171.60   Jurassic
+## 98       Early Aalenian 175.60 171.60   Jurassic
+## 99        Late Aalenian 175.60 171.60   Jurassic
+## 100     Middle Aalenian 175.60 171.60   Jurassic
+## 101         Murchisonae 175.60 171.60   Jurassic
+## 102            Opalinum 175.60 171.60   Jurassic
+## 103             Scissum 175.60 171.60   Jurassic
+## 104            Temaikan 175.60 161.20   Jurassic
+## 105        Hillebrandti 180.10 175.60   Jurassic
+## 106       Late Toarcian 180.10 175.60   Jurassic
+## 107         Thouarsense 180.10 175.60   Jurassic
+## 108             Bifrons 182.00 175.60   Jurassic
+## 109           Levesquei 182.00 175.60   Jurassic
+## 110     Middle Toarcian 182.00 175.60   Jurassic
+## 111           Planulata 182.00 180.10   Jurassic
+## 112          Variabilis 182.00 175.60   Jurassic
+## 113            Toarcian 182.70 174.10   Jurassic
+## 114      Early Toarcian 183.00 182.00   Jurassic
+## 115          Falciferum 183.00 182.00   Jurassic
+## 116             Kanense 183.00 182.00   Jurassic
+## 117       Tenuicostatum 183.00 182.00   Jurassic
+## 118         Carlottense 184.10 183.00   Jurassic
+## 119               Kunae 185.70 184.10   Jurassic
+## 120            Freboldi 186.70 185.70   Jurassic
+## 121              Davoei 189.60 183.00   Jurassic
+## 122 Early Pliensbachian 189.60 183.00   Jurassic
+## 123                Ibex 189.60 183.00   Jurassic
+## 124              Imlayi 189.60 186.70   Jurassic
+## 125            Jamesoni 189.60 183.00   Jurassic
+## 126  Late Pliensbachian 189.60 183.00   Jurassic
+## 127        Margaritatus 189.60 183.00   Jurassic
+## 128            Spinatum 189.60 183.00   Jurassic
+## 129             Ururoan 189.60 175.60   Jurassic
+## 130          Whiteavesi 189.60 186.70   Jurassic
+## 131       Pliensbachian 190.80 182.70   Jurassic
+## 132           Bucklandi 196.50 189.60   Jurassic
+## 133    Early Sinemurian 196.50 189.60   Jurassic
+## 134     Late Sinemurian 196.50 189.60   Jurassic
+## 135             Obtusum 196.50 189.60   Jurassic
+## 136            Oxynotum 196.50 189.60   Jurassic
+## 137        Raricostatum 196.50 189.60   Jurassic
+## 138        Semicostatum 196.50 189.60   Jurassic
+## 139             Turneri 196.50 189.60   Jurassic
+## 140          Canadensis 196.60 190.70   Jurassic
+## 141          Sinemurian 199.30 190.80   Jurassic
+## 142            Angulata 201.30 196.50   Jurassic
+## 143           Aratauran 201.30 189.60   Jurassic
+## 144    Early Hettangian 201.30 196.50   Jurassic
+## 145      Early Jurassic 201.30 174.10   Jurassic
+## 146          Hettangian 201.30 199.30   Jurassic
+## 147            Jurassic 201.30 145.00   Jurassic
+## 148     Late Hettangian 201.30 196.50   Jurassic
+## 149            Liasicus 201.30 196.50   Jurassic
+## 150   Middle Hettangian 201.30 196.50   Jurassic
+## 151           Planorbis 201.30 196.50   Jurassic
+## 152           Otapirian 205.60 201.60   Triassic
+## 153            Rhaetian 208.50 201.30   Triassic
+## 154            Sevatian 212.00 205.60   Triassic
+## 155             Warepan 212.00 205.60   Triassic
+## 156            Alaunian 215.56 212.00   Triassic
+## 157              Lacian 221.50 215.56   Triassic
+## 158            Otamitan 221.50 212.00   Triassic
+## 159             Oretian 227.50 221.50   Triassic
+## 160              Norian 228.00 208.50   Triassic
+## 161            Tuvalian 232.00 221.50   Triassic
+## 162              Julian 235.00 232.00   Triassic
+## 163             Carnian 237.00 228.00   Triassic
+## 164       Late Triassic 237.00 201.30   Triassic
+## 165           Kaihikuan 238.50 227.50   Triassic
+## 166           Fassanian 242.00 235.00   Triassic
+## 167            Ladinian 242.00 237.00   Triassic
+## 168        Longobardian 242.00 235.00   Triassic
+## 169              Aegean 247.20 242.00   Triassic
+## 170             Anisian 247.20 242.00   Triassic
+## 171           Bithynian 247.20 242.00   Triassic
+## 172            Illyrian 247.20 242.00   Triassic
+## 173     Middle Triassic 247.20 237.00   Triassic
+## 174           Pelsonian 247.20 242.00   Triassic
+## 175           Olenekian 251.20 247.20   Triassic
+## 176            Smithian 251.30 247.20   Triassic
+## 177            Spathian 251.30 247.20   Triassic
+## 178           Dienerian 252.17 251.30   Triassic
+## 179      Early Triassic 252.17 247.20   Triassic
+## 180        Griesbachian 252.17 251.30   Triassic
+## 181              Induan 252.17 251.20   Triassic
+## 182           Nammalian 252.17 247.20   Triassic
+## 183            Triassic 252.17 201.30   Triassic
+## 184            Vokhmian 252.17 247.20   Triassic</code></pre>
+<pre class="r"><code>#Step 15 - Use filter to make a dataset of only the Early/Late Times in the time sheet. Do they match the bdf sheet?
+
+
+#Left off on Data Manipulation Pt 6</code></pre>
 </div>
 
 

@@ -50,6 +50,55 @@ bdf %>%
   filter(Clade == "Ornithischia") %>%
   filter(Mass <= 5000)
 
-#Left off on Data Manipulation 2 video
+#Step 8 - Advanced filtering with Grepl (Search for a pattern match)
 
+bdf1 <- bdf%>%
+  filter(grepl("saurus", Taxon))
+
+#Step 9 - More advanced filtering examples
+
+bdf %>%
+  filter(Clade != "Dinosauromorpha") %>%
+  group_by(Clade, Subclade) %>%
+  summarize(Mean = mean(Mass, na.rm = TRUE), Median = median(Mass, na.rm = TRUE))
+
+#Step 10 - Slice Example (Slice takes only the rows that meet that criteria, but does then according to the grouping function.)
+
+bdf %>%
+  filter(Clade != "Dinosauromorpha") %>%
+  group_by(Clade, Subclade) %>%
+  slice(which.max(Mass))
+
+#Step 11 - Select function example (Takes only those columns and drops all others from the data frame.)
+
+bdf %>%
+  filter(Clade != "Dinosauromorpha") %>%
+  group_by(Clade, Subclade) %>%
+  slice(which.min(Mass)) %>%
+  select(Clade, Subclade, Mass)
+
+#Step 12 - Long to wide format using dcast function
+
+#bdf1 <- bdf %>%
+  #filter(Clade != "Dinosauromorpha") %>%
+  #group_by(Clade, Subclade) %>%
+  #summarize(Mean = mean(Mass, na.rm = TRUE), Median = median(Mass, na.rm = TRUE))
+
+#bdf2 <- dcast(bdf1, Subclade ~ Clade, value.var = "Mean")
+
+#Step 13 - Recreate table example
+
+bdf1 <- bdf %>%
+  filter(Clade != "Dinosauromorpha") %>%
+  group_by(Clade, Max_age) %>%
+  summarize(Mean = mean(Mass, na.rm = TRUE)) %>%
+  dcast(Max_age~Clade, value.var = "Mean")
+
+#Step 14 - Import Data for time
+read.csv("Time.csv")
+
+#Step 15 - Use filter to make a dataset of only the Early/Late Times in the time sheet. Do they match the bdf sheet?
+
+
+#Left off on Data Manipulation Pt 6
 ```

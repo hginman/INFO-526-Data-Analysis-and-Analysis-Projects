@@ -1,0 +1,185 @@
+Time,max_ma,min_ma,Period
+Early Maastrichtian,70.6,66,Cretaceous
+Edmontonian,70.6,66,Cretaceous
+Lancian,70.6,66,Cretaceous
+Late Maastrichtian,70.6,66,Cretaceous
+Maastrichtian,72.1,66,Cretaceous
+Early Campanian,83.5,70.6,Cretaceous
+Haumurian,83.5,66,Cretaceous
+Judithian,83.5,70.6,Cretaceous
+Late Campanian,83.5,70.6,Cretaceous
+Middle Campanian,83.5,70.6,Cretaceous
+Campanian,83.6,72.1,Cretaceous
+Early Santonian,85.8,83.5,Cretaceous
+Late Santonian,85.8,83.5,Cretaceous
+Middle Santonian,85.8,83.5,Cretaceous
+Piripauan,85.8,83.5,Cretaceous
+Santonian,86.3,83.6,Cretaceous
+Early Coniacian,89.3,85.8,Cretaceous
+Late Coniacian,89.3,85.8,Cretaceous
+Middle Coniacian,89.3,85.8,Cretaceous
+Senonian,89.3,66,Cretaceous
+Teratan,89.3,85.8,Cretaceous
+Coniacian,89.8,86.3,Cretaceous
+Mangaotanean,92.1,89.3,Cretaceous
+Early Turonian,93.5,89.3,Cretaceous
+Late Turonian,93.5,89.3,Cretaceous
+Middle Turonian,93.5,89.3,Cretaceous
+Turonian,93.9,89.8,Cretaceous
+Arowhanan,95.2,92.1,Cretaceous
+Early Cenomanian,99.6,93.5,Cretaceous
+Late Cenomanian,99.6,93.5,Cretaceous
+Middle Cenomanian,99.6,93.5,Cretaceous
+Ngaterian,99.6,95.2,Cretaceous
+Cenomanian,100.5,93.9,Cretaceous
+Late Cretaceous,100.5,66,Cretaceous
+Motuan,103.3,99.6,Cretaceous
+Late Albian,105.3,99.6,Cretaceous
+Urutawan,108.4,103.3,Cretaceous
+Middle Albian,109,105.3,Cretaceous
+Early Albian,112.03,109,Cretaceous
+Albian,113,100.5,Cretaceous
+Late Aptian,122.46,112.03,Cretaceous
+Aptian,125,113,Cretaceous
+Early Aptian,125.45,122.46,Cretaceous
+Barremian,129.4,125,Cretaceous
+Early Barremian,130,125.45,Cretaceous
+Late Barremian,130,125.45,Cretaceous
+Hauterivian,132.9,129.4,Cretaceous
+Early Hauterivian,136.4,130,Cretaceous
+Late Hauterivian,136.4,130,Cretaceous
+Valanginian,139.8,132.9,Cretaceous
+Early Valanginian,140.2,136.4,Cretaceous
+Late Valanginian,140.2,136.4,Cretaceous
+Berriasian,145,139.8,Cretaceous
+Cretaceous,145,66,Cretaceous
+Early Berriasian,145,140.2,Cretaceous
+Early Cretaceous,145,100.5,Cretaceous
+Late Berriasian,145,140.2,Cretaceous
+Middle Berriasian,145,140.2,Cretaceous
+Neocomian,145,130,Cretaceous
+Puaroan,148.5,145,Jurassic
+Early Tithonian,150.8,145,Jurassic
+Late Tithonian,150.8,145,Jurassic
+Middle Tithonian,150.8,145,Jurassic
+Tithonian,152.1,145,Jurassic
+Ohauan,153.5,148.5,Jurassic
+Early Kimmeridgian,155.7,150.8,Jurassic
+Late Kimmeridgian,155.7,150.8,Jurassic
+Kimmeridgian,157.3,152.1,Jurassic
+Early Oxfordian,161.2,155.7,Jurassic
+Heterian,161.2,153.5,Jurassic
+Late Oxfordian,161.2,155.7,Jurassic
+Middle Oxfordian,161.2,155.7,Jurassic
+Late Jurassic,163.5,145,Jurassic
+Oxfordian,163.5,157.3,Jurassic
+Early Callovian,164.7,161.2,Jurassic
+Late Callovian,164.7,161.2,Jurassic
+Middle Callovian,164.7,161.2,Jurassic
+Callovian,166.1,163.5,Jurassic
+Early Bathonian,167.7,164.7,Jurassic
+Late Bathonian,167.7,164.7,Jurassic
+Middle Bathonian,167.7,164.7,Jurassic
+Bathonian,168.3,166.1,Jurassic
+Bajocian,170.3,168.3,Jurassic
+Discites,171.6,167.7,Jurassic
+Early Bajocian,171.6,168.4,Jurassic
+Garantiana,171.6,167.7,Jurassic
+Humphresianum,171.6,168.4,Jurassic
+Kirschneri,171.6,168.4,Jurassic
+Laeviuscula,171.6,167.7,Jurassic
+Late Bajocian,171.6,167.7,Jurassic
+Oblatum,171.6,168.4,Jurassic
+Parkinsoni,171.6,167.7,Jurassic
+Sauzei,171.6,167.7,Jurassic
+Subfurcatum,171.6,167.7,Jurassic
+Aalenian,174.1,170.3,Jurassic
+Middle Jurassic,174.1,163.5,Jurassic
+Concavum,175.6,171.6,Jurassic
+Early Aalenian,175.6,171.6,Jurassic
+Late Aalenian,175.6,171.6,Jurassic
+Middle Aalenian,175.6,171.6,Jurassic
+Murchisonae,175.6,171.6,Jurassic
+Opalinum,175.6,171.6,Jurassic
+Scissum,175.6,171.6,Jurassic
+Temaikan,175.6,161.2,Jurassic
+Hillebrandti,180.1,175.6,Jurassic
+Late Toarcian,180.1,175.6,Jurassic
+Thouarsense,180.1,175.6,Jurassic
+Bifrons,182,175.6,Jurassic
+Levesquei,182,175.6,Jurassic
+Middle Toarcian,182,175.6,Jurassic
+Planulata,182,180.1,Jurassic
+Variabilis,182,175.6,Jurassic
+Toarcian,182.7,174.1,Jurassic
+Early Toarcian,183,182,Jurassic
+Falciferum,183,182,Jurassic
+Kanense,183,182,Jurassic
+Tenuicostatum,183,182,Jurassic
+Carlottense,184.1,183,Jurassic
+Kunae,185.7,184.1,Jurassic
+Freboldi,186.7,185.7,Jurassic
+Davoei,189.6,183,Jurassic
+Early Pliensbachian,189.6,183,Jurassic
+Ibex,189.6,183,Jurassic
+Imlayi,189.6,186.7,Jurassic
+Jamesoni,189.6,183,Jurassic
+Late Pliensbachian,189.6,183,Jurassic
+Margaritatus,189.6,183,Jurassic
+Spinatum,189.6,183,Jurassic
+Ururoan,189.6,175.6,Jurassic
+Whiteavesi,189.6,186.7,Jurassic
+Pliensbachian,190.8,182.7,Jurassic
+Bucklandi,196.5,189.6,Jurassic
+Early Sinemurian,196.5,189.6,Jurassic
+Late Sinemurian,196.5,189.6,Jurassic
+Obtusum,196.5,189.6,Jurassic
+Oxynotum,196.5,189.6,Jurassic
+Raricostatum,196.5,189.6,Jurassic
+Semicostatum,196.5,189.6,Jurassic
+Turneri,196.5,189.6,Jurassic
+Canadensis,196.6,190.7,Jurassic
+Sinemurian,199.3,190.8,Jurassic
+Angulata,201.3,196.5,Jurassic
+Aratauran,201.3,189.6,Jurassic
+Early Hettangian,201.3,196.5,Jurassic
+Early Jurassic,201.3,174.1,Jurassic
+Hettangian,201.3,199.3,Jurassic
+Jurassic,201.3,145,Jurassic
+Late Hettangian,201.3,196.5,Jurassic
+Liasicus,201.3,196.5,Jurassic
+Middle Hettangian,201.3,196.5,Jurassic
+Planorbis,201.3,196.5,Jurassic
+Otapirian,205.6,201.6,Triassic
+Rhaetian,208.5,201.3,Triassic
+Sevatian,212,205.6,Triassic
+Warepan,212,205.6,Triassic
+Alaunian,215.56,212,Triassic
+Lacian,221.5,215.56,Triassic
+Otamitan,221.5,212,Triassic
+Oretian,227.5,221.5,Triassic
+Norian,228,208.5,Triassic
+Tuvalian,232,221.5,Triassic
+Julian,235,232,Triassic
+Carnian,237,228,Triassic
+Late Triassic,237,201.3,Triassic
+Kaihikuan,238.5,227.5,Triassic
+Fassanian,242,235,Triassic
+Ladinian,242,237,Triassic
+Longobardian,242,235,Triassic
+Aegean,247.2,242,Triassic
+Anisian,247.2,242,Triassic
+Bithynian,247.2,242,Triassic
+Illyrian,247.2,242,Triassic
+Middle Triassic,247.2,237,Triassic
+Pelsonian,247.2,242,Triassic
+Olenekian,251.2,247.2,Triassic
+Smithian,251.3,247.2,Triassic
+Spathian,251.3,247.2,Triassic
+Dienerian,252.17,251.3,Triassic
+Early Triassic,252.17,247.2,Triassic
+Griesbachian,252.17,251.3,Triassic
+Induan,252.17,251.2,Triassic
+Nammalian,252.17,247.2,Triassic
+Triassic,252.17,201.3,Triassic
+Vokhmian,252.17,247.2,Triassic
