@@ -1,0 +1,52 @@
+---
+title: "Tables and Data Manipulation"
+author: "Hayden Ginman"
+date: "2023-08-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+#Step 1 - Install and Add Libraries to coding environment
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+#install.packages("dplyr")
+#install.packages("reshape2")
+library("dplyr")
+library("reshape2")
+
+#Step 2 - Load Data into coding environment
+
+tobacco <- read.csv("Tobacco_Consumption.csv")
+
+#Step 3 - Filter data to answer Question 1. How has smoking cigarettes changed over time?
+
+cigarette_data <- tobacco %>% filter(Measure == "Cigarettes")
+
+#Step 4 - Use group_by function to summarize total cigarette consumption by year
+
+cigarette_total <- cigarette_data %>%
+                    group_by(Year) %>%
+                    summarize(Total_Consumption = sum(Total, na.rm = TRUE))
+
+#Step 5 - Use group_by function to summarize average cigarette consumption per capita
+
+cigarette_PC <- cigarette_data %>%
+                group_by(Year) %>%
+                summarize(Avg_Per_Capita_Consumption = mean(`Total.Per.Capita`, na.rm = TRUE))
+
+#Step 6 - 
+
+head(cigarette_PC)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
