@@ -1,4 +1,4 @@
-"Year","Total_Consumption","Avg_Per_Capita_Consumption","Total_domestic","Total_imports","PC_domestic","PC_imports","Avg_Domestic_PC","Avg_Imports_PC"
+"Year","Total_Consumption_of_Cigarettes","Avg_Per_Capita_Consumption_of_Cigarettes","Total_Domestic_Tobacco","Total_Imports_Tobacco","Per_Capita_Domestic_Tobacco","Per_Capita_Imports_Tobacco","Avg_Domestic_Per_Capita_Chewing_Tobacco","Avg_Imports_Per_Capita_Chewing_Tobacco"
 2000,4.3557e+11,2076,888357608356,28395244568,325.887076923077,10.4615384615385,0.217,0
 2001,4.2672e+11,2010,861456473096,34051515644,311.966307692308,12.3076923076923,0.233,0
 2002,4.15724e+11,1936,830186997520,46532488445,297.350076923077,16.6154615384615,0.219,0.001
