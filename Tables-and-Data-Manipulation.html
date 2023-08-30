@@ -401,18 +401,39 @@ cigarette_PC &lt;- cigarette_data %&gt;%
                 group_by(Year) %&gt;%
                 summarize(Avg_Per_Capita_Consumption = mean(`Total.Per.Capita`, na.rm = TRUE))
 
-#Step 6 - 
+#Step 6 - Answer question 2. How have domestic versus imported tobacco products changed over time? Use group_by function to isolate data for Total domestic and imports by year
 
-head(cigarette_PC)</code></pre>
-<pre><code>## # A tibble: 6 × 2
-##    Year Avg_Per_Capita_Consumption
-##   &lt;int&gt;                      &lt;dbl&gt;
-## 1  2000                       2076
-## 2  2001                       2010
-## 3  2002                       1936
-## 4  2003                       1844
-## 5  2004                       1811
-## 6  2005                       1717</code></pre>
+domestic_import_data &lt;- tobacco %&gt;%
+                        group_by(Year) %&gt;%
+              summarize(Total_domestic = sum(Domestic, na.rm = TRUE), Total_imports = sum(Imports, na.rm = TRUE))
+#Step 7 - Create table for average  per capita consumption
+
+domestic_import_pc &lt;- tobacco %&gt;%
+                      group_by(Year) %&gt;%
+                      summarize(PC_domestic = mean(Domestic.Per.Capita, na.rm = TRUE), PC_imports = mean(Imports.Per.Capita, na.rm = TRUE))
+          
+#Step 8 - Combine the Total and Average Per Capita Tables
+
+domestic_import_combine &lt;- left_join(domestic_import_data, domestic_import_pc, by = &quot;Year&quot;)
+
+#Step 9 - Answer Question 3 How has chewing tobacco consumption per capita changed over time? Filter the data for chewing tobacco
+
+chewing_data &lt;- tobacco %&gt;%
+                filter(Submeasure == &quot;Chewing Tobacco&quot;)
+#Step 10 - Use group-by function to group the data by year and summarize the average chewing tobacco consumption per capita
+
+chewing_PC &lt;- chewing_data %&gt;%
+              group_by(Year) %&gt;%
+              summarize(Avg_Domestic_PC = mean(Domestic.Per.Capita, na.rm = TRUE), Avg_Imports_PC = mean(Imports.Per.Capita, na.rm = TRUE))
+
+#Step 11 - Combine the data tables that answered question into single table
+
+combined_data &lt;- cigarette_total %&gt;%
+  left_join(cigarette_PC, by = &quot;Year&quot;) %&gt;%
+  left_join(domestic_import_combine, by = &quot;Year&quot;) %&gt;%
+  left_join(chewing_PC, by = &quot;Year&quot;)
+
+#Rename columns for summary tables</code></pre>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the
 code chunk to prevent printing of the R code that generated the
 plot.</p>
