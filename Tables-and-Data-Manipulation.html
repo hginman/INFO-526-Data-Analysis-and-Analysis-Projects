@@ -370,8 +370,6 @@ chunk like this:</p>
 options(repos = c(CRAN = &quot;https://cloud.r-project.org/&quot;))
 #install.packages(&quot;dplyr&quot;)
 #install.packages(&quot;reshape2&quot;)
-#install.packages(&quot;gt&quot;)
-library(&quot;gt&quot;)
 library(&quot;dplyr&quot;)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
@@ -391,27 +389,32 @@ tobacco &lt;- read.csv(&quot;Tobacco_Consumption.csv&quot;)
 
 cigarette_data &lt;- tobacco %&gt;% filter(Measure == &quot;Cigarettes&quot;)
 
-#Step 4 - Use group_by function to summarize total cigarette consumption by year and remove scientific notation
+#Step 4 - Use group_by function to summarize total domestic and import cigarette consumption by year
 
-cigarette_total &lt;- cigarette_data %&gt;%
-                    group_by(Year) %&gt;%
-                    summarize(Total_Consumption_of_Cigarettes = sum(Total, na.rm = TRUE))
+cigarette_total_domestic &lt;- cigarette_data %&gt;%
+                            group_by(Year) %&gt;%
+                            summarize(Total_Domestic_Cigarettes = sum(Domestic, na.rm = TRUE))
+                              
+cigarette_total_import &lt;- cigarette_data %&gt;%
+                          group_by(Year) %&gt;%
+                          summarize(Total_Import_Cigarettes = sum(Imports, na.rm = TRUE))
+                              
+#Step 5 - Use group_by function to summarize average domestic and import cigarette consumption per capita
 
-cigarette_total$Total_Consumption_of_Cigarettes &lt;- format(cigarette_total$Total_Consumption_of_Cigarettes, scientific=FALSE)
-
-
-#Step 5 - Use group_by function to summarize average cigarette consumption per capita
-
-cigarette_PC &lt;- cigarette_data %&gt;%
-                group_by(Year) %&gt;%
-                summarize(Avg_Per_Capita_Consumption_of_Cigarettes = mean(`Total.Per.Capita`, na.rm = TRUE))
+cigarette_domestic_pc &lt;- cigarette_data %&gt;%
+                        group_by(Year) %&gt;%
+                        summarize(Cig_Domestic_Per_Capita = mean(Domestic.Per.Capita, na.rm = TRUE))
+                          
+cigarette_import_pc &lt;- cigarette_data %&gt;%
+                      group_by(Year) %&gt;%
+                      summarize(Cig_Imports_Per_Capita = mean(Imports.Per.Capita, na.rm = TRUE))
 
 #Step 6 - Answer question 2. How have domestic versus imported tobacco products changed over time? Use group_by function to isolate data for Total domestic and imports by year
 
 domestic_import_data &lt;- tobacco %&gt;%
                         group_by(Year) %&gt;%
                         summarize(Total_Domestic_Tobacco = sum(Domestic, na.rm = TRUE), Total_Imports_Tobacco = sum(Imports, na.rm = TRUE))
-#Step 7 - Create table for average per capita consumption
+#Step 7 - Create table for Total per capita consumption of Tobacco products
 
 domestic_import_pc &lt;- tobacco %&gt;%
                       group_by(Year) %&gt;%
@@ -425,54 +428,61 @@ domestic_import_combine &lt;- left_join(domestic_import_data, domestic_import_pc
 
 chewing_data &lt;- tobacco %&gt;%
                 filter(Submeasure == &quot;Chewing Tobacco&quot;)
-#Step 10 - Use group-by function to group the data by year and summarize the average chewing tobacco consumption per capita
 
-chewing_PC &lt;- chewing_data %&gt;%
+#Step 10 - Use group-by function to group the data by year and summarize Total Domestic and Import chewing tobacco consumption and Domestic and Import chewing tobacco consumption per capita
+
+chewing_total_domestic &lt;- chewing_data %&gt;%
+                group_by(Year) %&gt;%
+                summarize(Total_Domestic_Chewing = sum(Domestic, na.rm = TRUE))
+                
+chewing_total_imports &lt;- chewing_data %&gt;%
+                        group_by(Year) %&gt;%
+                        summarize(Total_Chewing_Imports = sum(Imports, na.rm = TRUE))
+
+chewing_domestic_pc &lt;- chewing_data %&gt;%
               group_by(Year) %&gt;%
-              summarize(Avg_Domestic_Per_Capita_Chewing_Tobacco = mean(Domestic.Per.Capita, na.rm = TRUE), Avg_Imports_Per_Capita_Chewing_Tobacco = mean(Imports.Per.Capita, na.rm = TRUE))
+              summarize(Domestic_Per_Capita_Chewing_Tobacco = mean(Domestic.Per.Capita, na.rm = TRUE))
+
+chewing_imports_pc &lt;- chewing_data %&gt;%
+                      group_by(Year) %&gt;%
+                      summarize(Imports_Per_Capita_Chewing_Tobacco = mean(Imports.Per.Capita, na.rm = TRUE))
 
 #Step 11 - Combine the data tables that answered questions into single table
 
-combined_data &lt;- cigarette_total %&gt;%
-  left_join(cigarette_PC, by = &quot;Year&quot;) %&gt;%
+combined_data &lt;- cigarette_total_domestic %&gt;%
+  left_join(cigarette_total_import, by = &quot;Year&quot;) %&gt;%
+  left_join(cigarette_domestic_pc, by = &quot;Year&quot;) %&gt;%
+  left_join(cigarette_import_pc, by = &quot;Year&quot;) %&gt;%
   left_join(domestic_import_combine, by = &quot;Year&quot;) %&gt;%
-  left_join(chewing_PC, by = &quot;Year&quot;)
+  left_join(chewing_total_domestic, by = &quot;Year&quot;) %&gt;%
+  left_join(chewing_total_imports, by = &quot;Year&quot;) %&gt;%
+  left_join(chewing_domestic_pc, by = &quot;Year&quot;) %&gt;%
+  left_join(chewing_imports_pc, by = &quot;Year&quot;)
 
-#Step 12 - Export Importable Table to Excel file
+combined_data</code></pre>
+<pre><code>## # A tibble: 22 × 13
+##     Year Total_Domestic_Cigarettes Total_Import_Cigaret…¹ Cig_Domestic_Per_Cap…²
+##    &lt;int&gt;                     &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+##  1  2000              423250000000            12319663000                   2018
+##  2  2001              412031000000            14688910000                   1940
+##  3  2002              394872000000            20851781000                   1839
+##  4  2003              377242000000            23085086000                   1738
+##  5  2004              374978000000            22677777000                   1708
+##  6  2005              362964000000            18134795000                   1635
+##  7  2006              364437000000            16156451000                   1623
+##  8  2007              348317000000            13272402000                   1533
+##  9  2008              335384000000            11035202000                   1459
+## 10  2009              308388000000             9348209000                   1327
+## # ℹ 12 more rows
+## # ℹ abbreviated names: ¹​Total_Import_Cigarettes, ²​Cig_Domestic_Per_Capita
+## # ℹ 9 more variables: Cig_Imports_Per_Capita &lt;dbl&gt;,
+## #   Total_Domestic_Tobacco &lt;dbl&gt;, Total_Imports_Tobacco &lt;dbl&gt;,
+## #   Per_Capita_Domestic_Tobacco &lt;dbl&gt;, Per_Capita_Imports_Tobacco &lt;dbl&gt;,
+## #   Total_Domestic_Chewing &lt;dbl&gt;, Total_Chewing_Imports &lt;dbl&gt;,
+## #   Domestic_Per_Capita_Chewing_Tobacco &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code>#Step 12 - Export Importable Table to Excel file
 
-write.csv(combined_data, &quot;Importable_Table.csv&quot;, row.names = FALSE)
-
-#Step 13 - Use GT (Grammar of Tables) library to make publication table
-
-publication_table &lt;- combined_data %&gt;%
-  gt() %&gt;%
-  tab_header(
-    title = &quot;Tobacco Consumption Trends in the US&quot;,
-    subtitle = &quot;Yearly data on various tobacco products&quot;) %&gt;%
-  cols_label(
-    Year = &quot;Year&quot;,
-    Total_Consumption_of_Cigarettes = &quot;Total Cigarette Consumption&quot;,
-    Avg_Per_Capita_Consumption_of_Cigarettes = &quot;Average Per Capita Cigarette Consumption&quot;,
-    Total_Domestic_Tobacco = &quot;Total Domestic Tobacco Production&quot;, 
-    Total_Imports_Tobacco = &quot;Total Tobacco Imports&quot;, 
-    Per_Capita_Domestic_Tobacco = &quot;Average Domestic Tobacco Consumption Per Capita&quot;, 
-    Per_Capita_Imports_Tobacco = &quot;Average Import Tobacco Consumption&quot;, 
-    Avg_Domestic_Per_Capita_Chewing_Tobacco = &quot;Average Domestic Chewing Tobacco Consumption Per Capita&quot;,
-    Avg_Imports_Per_Capita_Chewing_Tobacco = &quot;Average Import Chewing Tobacco Consumption Per Capita&quot;) %&gt;%
-  tab_footnote(
-    footnote = &quot;Data represents both total consumption and per capita figures.&quot;,
-    locations = cells_body(columns = 2:6, rows = everything())) %&gt;%
-  tab_spanner(
-    label = &quot;Cigarette Consumption&quot;,
-    columns = starts_with(&quot;Total_Consumption_of_Cigarettes&quot;)) %&gt;%
-  tab_spanner(
-    label = &quot;Domestic vs Imports&quot;,
-    columns = starts_with(&quot;Total_Domestic_Tobacco&quot;)) %&gt;%
-  tab_spanner(
-    label = &quot;Chewing Tobacco Consumption&quot;,
-    columns = starts_with(&quot;Avg_Domestic_Per_Capita_Chewing_Tobacco&quot;))
-
-#Convert publication table to wide format instead of long</code></pre>
+write.csv(combined_data, &quot;Importable_Table.csv&quot;, row.names = FALSE)</code></pre>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the
 code chunk to prevent printing of the R code that generated the
 plot.</p>
