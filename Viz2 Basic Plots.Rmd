@@ -6,18 +6,11 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo =FALSE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-
-Step 1 - Load libraries into coding environment
-```{r}
+```{r code0, echo=FALSE, message=FALSE}
+#Step 1 - Load libraries into coding environment
 options(repos = c(CRAN = "https://cloud.r-project.org/"))
 #install.packages("lubridate")
 #install.packages("viridis")
@@ -29,9 +22,13 @@ library("viridis")
 
 ```
 
-Step 2 - Load clean data into coding environment - Use lubridate to convert character dates to functional format
 
-```{r}
+
+```{r code1, echo=FALSE}
+#Step 2 - Load clean data into coding environment 
+#Use lubridate to convert character dates to functional format 
+#Create a new column (Month) that contains the month and year of the StartDate Column
+
 vaccinations <- read.csv("COVID-19_Vaccinations_by_Age_(Maricopa_County).csv")
 
 vaccinations$StartDate <- as.Date(substr(vaccinations$StartDate, 1, 10), format="%Y/%m/%d")
@@ -40,9 +37,10 @@ vaccinations$Month <- format(vaccinations$StartDate, "%Y-%m")
 
 ```
 
-Step 3 - 
 
-```{r}
+```{r code2, echo=FALSE}
+#Step 3 - Group the data frame by month and the sum up vaccinations for each age group
+
 monthly_vaccinations <- vaccinations %>%
   group_by(Month) %>%
   summarize(
@@ -58,9 +56,11 @@ monthly_vaccinations <- vaccinations %>%
 
 ```
 
-Step 4 - 
+```{r code3, echo=FALSE}
+#Step 4 - melt data from wide format to long format so each row represents a month/age group combination
+#Convert month column to date format
+#Create vector of age_labels that are properly formatted for legend
 
-```{r}
 melt_monthly_vax <- melt(monthly_vaccinations, id.vars = "Month")
 
 melt_monthly_vax$Month <- as.Date(paste0(melt_monthly_vax$Month, "-01"), format="%Y-%m-%d")
@@ -75,43 +75,67 @@ age_labels <- c(
   Age65To74 = "65-74 years",
   Age75Up = "75+ years"
 )
+```
+```{r code4, echo=FALSE}
+#Step 5 - Make a stacked are chart as the pretty plot
 
-
-ggplot(melt_monthly_vax, aes(x = Month, y = value, fill = variable, group = variable)) +
+pretty_plot <- ggplot(melt_monthly_vax, aes(x = Month, y = value, fill = variable, group = variable)) +
   geom_area(position = "stack", alpha = 0.7) +
-  labs(title = "Monthly Vaccinations in Maricopa County by Age Group",
+  labs(title = "Total Monthly Vaccinations in Maricopa County by Age Group",
        x = "Month",
-       y = "Number of Vaccinations",
-       fill = "Age Group",
-       caption = "Data source: Maricopa County Health Department") +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +
-  scale_y_continuous(breaks = seq(0, 30000000, by = 2000000), labels = function(x) format(x, big.mark = ",", scientific = FALSE)) + scale_fill_viridis_d(breaks = names(age_labels), labels = age_labels) + theme_minimal()
-
-
-ggplot(melt_monthly_vax, aes(x = Month, y = value, fill = variable, group = variable)) +
-  geom_area(position = "stack", alpha = 0.7) +
-  labs(title = "Monthly Vaccinations in Maricopa County by Age Group",
-       x = "Month",
-       y = "Number of Vaccinations",
+       y = "Total Monthly Vaccinations",
        fill = "Age Group") +
-  scale_y_continuous(breaks = seq(0, max(melt_monthly_vax$value, na.rm = TRUE), by = 250000),
-                     labels = function(x) format(x, big.mark = ",", scientific = FALSE)) +
   scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+  scale_y_continuous(breaks = seq(0, 30000000, by = 2000000), labels = function(x) format(x, big.mark = ",", scientific = FALSE)) + 
+  scale_fill_viridis_d(breaks = names(age_labels), labels = age_labels) + 
   theme_minimal()
 
-
-
-ggplot(melt_monthly_vax, aes(x = Month, y = value, color = variable, group = variable)) +
-  geom_line() +
-  labs(title = "Monthly Vaccinations in Maricopa County by Age Group",
-       x = "Month",
-       y = "Number of Vaccinations",
-       color = "Age Group") +
-  scale_y_continuous(breaks = seq(0, max(melt_monthly_vax$value, na.rm = TRUE), by = 250000),
-                     labels = function(x) format(x, big.mark = ",", scientific = FALSE)) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b") +
-  theme_minimal()
-
+print(pretty_plot)
 
 ```
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Figure 1: Stacked area chart illustrating the month-by-month distribution of total vaccinations by age group in Maricopa County from June 2021 to February 2022. Each color represents a distinct age group, and the height of the stack indicates the cumulative number of vaccinations for the respective month.
+
+\newpage
+
+
+
+```{r code5, echo=FALSE, warning=FALSE}
+#Step 6 - Create ugly plot with typos, useless caption, scale issues, an unsightly palette, 
+#misaligned text, and small font
+
+ugly_plot <- ggplot(melt_monthly_vax, aes(x = Month, y = value, color = variable, group = variable)) +
+  geom_line() +
+  labs(title = "Manthly Vaccinashuns in Maricopa Countyy by Age Groop", x = "Munth",
+       y = "No. of Vaccinatons",
+       color = "Age Groop", 
+       caption = "Data sourc: Somewhere in Maricopa\nNote: I'm ugly :(") +
+  scale_y_continuous(breaks = seq(0, max(melt_monthly_vax$value, na.rm = TRUE), by = 1e7), 
+                     labels = function(x) format(x, big.mark = ".", scientific = TRUE)) + 
+  scale_x_date(date_breaks = "3 months", date_labels = "%b %Y") + 
+  scale_color_brewer(palette="OrRd") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0, size = 6), 
+    axis.title = element_text(size = 6), 
+    legend.position = "bottom", 
+    legend.title = element_text(hjust = 1), 
+    plot.caption = element_text(hjust = 1, color = "red"))
+
+print(ugly_plot)
+
+```
+
+
+
+```{r code0, eval=FALSE, echo=TRUE}
+```
+```{r code1, eval=FALSE, echo=TRUE}
+```
+```{r code2, eval=FALSE, echo=TRUE}
+```
+```{r code3, eval=FALSE, echo=TRUE}
+```
+```{r code4, eval=FALSE, echo=TRUE}
+```
+```{r code5, eval=FALSE, echo=TRUE}
+```
