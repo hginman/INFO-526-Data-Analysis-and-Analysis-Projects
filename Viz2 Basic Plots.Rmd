@@ -77,7 +77,7 @@ age_labels <- c(
 )
 ```
 ```{r code4, echo=FALSE}
-#Step 5 - Make a stacked are chart as the pretty plot
+#Step 5 - Make a stacked area chart as the pretty plot
 
 pretty_plot <- ggplot(melt_monthly_vax, aes(x = Month, y = value, fill = variable, group = variable)) +
   geom_area(position = "stack", alpha = 0.7) +
