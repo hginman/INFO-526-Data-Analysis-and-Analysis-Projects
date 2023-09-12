@@ -1,0 +1,55 @@
+---
+title: "Viz 3 Advanced Plots"
+author: "Hayden Ginman"
+date: "2023-09-11"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+#Step 1 - Load libraries into coding environment
+
+library("dplyr")
+library("reshape2")
+library("lubridate")
+library("ggplot2")
+
+
+
+```
+
+```{r}
+#Step 2 - Load cleaned UFO data into coding environment
+# isolate the year in datetime column and make a new column called year
+
+UFO <- read.csv("UFO Clean.csv")
+
+UFO$year <- year(as.Date(UFO$datetime, format = "%m/%d/%Y"))
+
+```
+
+```{r}
+#Step 3 - Group states into regions
+
+regions <- list(
+  Northeast = c('me', 'nh', 'vt', 'ma', 'ri', 'ct', 'ny', 'pa', 'nj'),
+  Midwest = c('nd', 'sd', 'ne', 'ks', 'mo', 'ia', 'mn', 'wi', 'il', 'in', 'oh', 'mi'),
+  South = c('tx', 'ok', 'ar', 'la', 'ky', 'tn', 'ms', 'al', 'wv', 'md', 'de', 'va', 'nc', 'sc', 'ga', 'fl'),
+  West = c('id', 'mt', 'wy', 'nv', 'ut', 'co', 'az', 'nm', 'ak', 'wa', 'or', 'ca', 'hi')
+)
+
+
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
