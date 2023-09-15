@@ -6,7 +6,7 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## R Markdown
@@ -15,7 +15,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r}
+```{r code0, echo=FALSE, message=FALSE, warning=FALSE}
 #Step 1 - Load libraries into coding environment
 options(repos = c(CRAN = "https://cloud.r-project.org/"))
 #install.packages("gridExtra")
@@ -28,7 +28,7 @@ library("gridExtra")
 
 ```
 
-```{r}
+```{r code1, echo=FALSE, warning=FALSE}
 #Step 2 - Load cleaned UFO data into coding environment
 # isolate the year in datetime column and make a new column called year
 
@@ -37,7 +37,7 @@ UFO <- read.csv("UFO Clean1.csv")
 UFO$year <- format(as.Date(UFO$datetime, format = "%m/%d/%Y"), "%Y")
 ```
 
-```{r}
+```{r code2, echo=FALSE, warning=FALSE}
 #Step 3 - Group states into regions
 
 regions <- list(
@@ -73,7 +73,7 @@ UFO_summary <- UFO %>%
 
 ```
 
-```{r}
+```{r code3, echo=FALSE, warning=FALSE}
 #Step 5 - Make a scatter plot that depicts UFO sighting over time for each region
 
 plot_Northeast <- UFO_summary %>%
@@ -123,7 +123,7 @@ plot_West <- UFO_summary %>%
 
 ```
 
-```{r, fig.width=10, fig.height=15}
+```{r code4, fig.width=10, fig.height=12, warning=FALSE, echo=FALSE}
 #Step 6 - Combine plots of each region using gridExtra
 
 grid.arrange(plot_Northeast, plot_Midwest, plot_South, plot_West, ncol = 1)
@@ -131,5 +131,44 @@ grid.arrange(plot_Northeast, plot_Midwest, plot_South, plot_West, ncol = 1)
 
 
 ```
+Figure 1: Yearly trends in UFO sightings Across U.S. Regions (1930-2014): This series of visualizations showcases the yearly count of reported UFO sightings across the four major U.S. regions from 1930 to 2014.
+
+\newpage
+
+```{r code6, warning=FALSE}
+#Step 5 - Create an illusion plot
+
+combined_plot <- ggplot(UFO_summary, aes(x = year, y = count, color = region)) +
+  geom_point(size = 1, alpha = 0.3) + 
+  labs(title = "UFO Sightings Across U.S. Regions Over Time",
+       x = "Year",
+       y = "Number of Sightings (Log Scale)") +
+  scale_x_continuous(limits = c(1930, 2014), breaks = seq(1930, 2014, by = 10)) + 
+  scale_y_log10(limits = c(1, 2500), breaks = c(1, 10, 100, 250, 550, 1500, 2500)) +
+  scale_color_manual(values = c("#003f5c", "#7a5195", "#ef5675", "#ffa600")) +
+  theme_minimal()
+
+print(combined_plot)
+
+```
+Figure 2: Yearly trends in UFO sightings Across U.S. Regions (1930-2014): This visualization showcases the yearly count of reported UFO sightings across the four major U.S. regions from 1930 to 2014 on a single plot. The Y-axis has been transformed using a logarithmic scale and has irregular breaks that make the data more difficult to interpret. Size of data points is small and opacity was reduced to make overlapping data point more difficult to interpret
+
+\newpage
+```{r code0, eval=FALSE, echo=TRUE}
+```
+```{r code1, eval=FALSE, echo=TRUE}
+```
+```{r code2, eval=FALSE, echo=TRUE}
+```
+```{r code3, eval=FALSE, echo=TRUE}
+```
+```{r code4, eval=FALSE, echo=TRUE}
+```
+```{r code5, eval=FALSE, echo=TRUE}
+```
+```{r code6, eval=FALSE, echo=TRUE}
+```
+
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
