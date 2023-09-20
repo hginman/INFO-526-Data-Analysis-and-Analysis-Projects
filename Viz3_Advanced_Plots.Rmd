@@ -9,12 +9,6 @@ output: pdf_document
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 ```{r code0, echo=FALSE, message=FALSE, warning=FALSE}
 #Step 1 - Load libraries into coding environment
 options(repos = c(CRAN = "https://cloud.r-project.org/"))
@@ -37,7 +31,7 @@ UFO <- read.csv("UFO Clean1.csv")
 UFO$year <- format(as.Date(UFO$datetime, format = "%m/%d/%Y"), "%Y")
 ```
 
-```{r code2, echo=FALSE, warning=FALSE}
+```{r code2, echo=FALSE, warning=FALSE, message=FALSE}
 #Step 3 - Group states into regions
 
 regions <- list(
@@ -64,8 +58,6 @@ UFO <- UFO %>%
 
 UFO$year <- as.numeric(as.character(UFO$year))
 
-
-
 UFO_summary <- UFO %>%
   filter(!is.na(region)) %>%
   group_by(year, region) %>%
@@ -73,52 +65,21 @@ UFO_summary <- UFO %>%
 
 ```
 
-```{r code3, echo=FALSE, warning=FALSE}
+```{r code3, echo=FALSE, warning=FALSE, message=FALSE}
 #Step 5 - Make a scatter plot that depicts UFO sighting over time for each region
 
-plot_Northeast <- UFO_summary %>%
-  filter(region == "Northeast") %>%
-  ggplot(aes(x = year, y = count)) +
-  geom_point(color = "#003f5c", size = 2, alpha = 0.6) + 
-  labs(title = "UFO Sightings in Northeast Over Time",
-       x = "Year",
-       y = "Number of Sightings") +
-  scale_x_continuous(limits = c(1930, 2014), breaks = seq(1930, 2014, by = 10)) + 
-  scale_y_continuous(limits = c(0, 2500), breaks = seq(0, 2500, by = 250)) + 
-  theme_minimal()
-
-plot_Midwest <- UFO_summary %>%
-  filter(region == "Midwest") %>%
-  ggplot(aes(x = year, y = count)) +
-  geom_point(color = "#7a5195", size = 2, alpha = 0.6) +
-  labs(title = "UFO Sightings in Midwest Over Time",
-       x = "Year",
-       y = "Number of Sightings") +
-  scale_x_continuous(limits = c(1930, 2014), breaks = seq(1930, 2014, by = 10)) + 
-  scale_y_continuous(limits = c(0, 2500), breaks = seq(0, 2500, by = 250)) + 
-  theme_minimal()
-
-plot_South <- UFO_summary %>%
-  filter(region == "South") %>%
-  ggplot(aes(x = year, y = count)) +
-  geom_point(color = "#ef5675", size = 2, alpha = 0.6) +
-  labs(title = "UFO Sightings in South Over Time",
-       x = "Year",
-       y = "Number of Sightings") +
-  scale_x_continuous(limits = c(1930, 2014), breaks = seq(1930, 2014, by = 10)) +
-  scale_y_continuous(limits = c(0, 2500), breaks = seq(0, 2500, by = 250)) + 
-  theme_minimal()
-
-plot_West <- UFO_summary %>%
-  filter(region == "West") %>%
-  ggplot(aes(x = year, y = count)) +
-  geom_point(color = "#ffa600", size = 2, alpha = 0.6) +
-  labs(title = "UFO Sightings in West Over Time",
-       x = "Year",
-       y = "Number of Sightings") +
+combined_plot_pretty <- UFO_summary %>%
+  ggplot(aes(x = year, y = count, color = region)) +
+  geom_point(size = 1, alpha = 0.3) +
+  geom_smooth(method = "loess", se = FALSE, linetype = "dashed") +
+  scale_color_manual(name = "U.S. Regions", values = c(Northeast = "#003f5c", Midwest = "#7a5195", South = "#ef5675", West = "#ffa600")) + labs(title = "Regional Trends in UFO Reports Across the US (1930-2014)",
+       x = "Decade",
+       y = "Total UFO Sighting Frequency") +
   scale_x_continuous(limits = c(1930, 2014), breaks = seq(1930, 2014, by = 10)) + 
   scale_y_continuous(limits = c(0, 2500), breaks = seq(0, 2500, by = 250)) +
   theme_minimal()
+
+print(combined_plot_pretty)
 
 
 ```
@@ -126,32 +87,32 @@ plot_West <- UFO_summary %>%
 ```{r code4, fig.width=10, fig.height=12, warning=FALSE, echo=FALSE}
 #Step 6 - Combine plots of each region using gridExtra
 
-grid.arrange(plot_Northeast, plot_Midwest, plot_South, plot_West, ncol = 1)
+#grid.arrange(plot_Northeast, plot_Midwest, plot_South, plot_West, ncol = 1)
 
 
 
 ```
-Figure 1: Yearly trends in UFO sightings Across U.S. Regions (1930-2014): This series of visualizations showcases the yearly count of reported UFO sightings across the four major U.S. regions from 1930 to 2014.
+Figure 1: UFO sighting trends by U.S. region from 1930 to 2014. The dashed lines represent smoothed trends for each region, indicating varying patterns of UFO reports across decades. Notably, all regions show an upward trend, suggesting an increasing public interest or occurrence of unexplained phenomena over time.
 
 \newpage
 
 ```{r code6, warning=FALSE}
 #Step 5 - Create an illusion plot
 
-combined_plot <- ggplot(UFO_summary, aes(x = year, y = count, color = region)) +
-  geom_point(size = 1, alpha = 0.3) + 
-  labs(title = "UFO Sightings Across U.S. Regions Over Time",
-       x = "Year",
-       y = "Number of Sightings (Log Scale)") +
+combined_plot_ugly <- ggplot(UFO_summary, aes(x = year, y = count, color = region)) +
+  geom_point(size = 2) + 
+  labs(title = "Regional Trends in UFO Reports Across the US (1930-2014)",
+       x = "Decade",
+       y = "Total UFO Sighting Frequency") +
   scale_x_continuous(limits = c(1930, 2014), breaks = seq(1930, 2014, by = 10)) + 
-  scale_y_log10(limits = c(1, 2500), breaks = c(1, 10, 100, 250, 550, 1500, 2500)) +
-  scale_color_manual(values = c("#003f5c", "#7a5195", "#ef5675", "#ffa600")) +
+  scale_y_continuous(limits = c(0, 2500), breaks = seq(0, 2500, by = 250)) +
+  scale_color_manual(name = "U.S. Regions", values = c("#c1e7ff", "#86b0cc", "#4c7c9b", "#004c6d")) +
   theme_minimal()
 
-print(combined_plot)
+print(combined_plot_ugly)
 
 ```
-Figure 2: Yearly trends in UFO sightings Across U.S. Regions (1930-2014): This visualization showcases the yearly count of reported UFO sightings across the four major U.S. regions from 1930 to 2014 on a single plot. The Y-axis has been transformed using a logarithmic scale and has irregular breaks that make the data more difficult to interpret. Size of data points is small and opacity was reduced to make overlapping data point more difficult to interpret
+Figure 2: A scatter plot of UFO sightings by region in the U.S. from 1930 to 2014. While this plot provides the same data as Figure 1, its design choices might impact the viewer's interpretation and understanding of trends. Differences in color palette and point size can influence the clarity and immediate visual appeal of data visualizations.
 
 \newpage
 ```{r code0, eval=FALSE, echo=TRUE}
@@ -169,6 +130,3 @@ Figure 2: Yearly trends in UFO sightings Across U.S. Regions (1930-2014): This v
 ```{r code6, eval=FALSE, echo=TRUE}
 ```
 
-
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
