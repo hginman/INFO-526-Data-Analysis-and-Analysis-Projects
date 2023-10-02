@@ -49,22 +49,22 @@ top_categories
 
 ggplot(top_categories, aes(x = reorder(Category.Name, TotalSales), y = TotalSales)) + 
   geom_bar(stat = "identity", fill = "Green") +
-  labs(title = "Top 10 Alcohol Categories by Sales",
+  labs(title = "Top 10 Alcohol Categories by Total Sales",
        x = NULL,
        y = "Total Sales ($)") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8)) +
   scale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = "M"))
 
 # Visualize the bottom 10 selling alcohol categories
 
 ggplot(worst_categories, aes(x = reorder(Category.Name, -TotalSales), y = TotalSales)) + 
   geom_bar(stat = "identity", fill = "Red") +
-  labs(title = "Bottom 10 Alcohol Categories by Sales",
+  labs(title = "Bottom 10 Alcohol Categories by Total Sales",
        x = NULL,
        y = "Total Sales ($)") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8)) +
   scale_y_continuous(labels = scales::label_number(scale = 1e-3, suffix = "K"))
 
 ```
@@ -85,7 +85,7 @@ summed_sales <- filtered_data %>%
 ggplot(summed_sales, aes(x = interaction(Year, Month, sep = "-"), y = Total.Sales, color = Category.Name)) +
   geom_line(aes(group = Category.Name)) +
   geom_point() +
-  labs(title = "Total Sales Over Time by Category", x = "Month and Year", y = "Total Sales") +
+  labs(title = "Total Sales Over Time by Alcohol Type", x = "Month and Year", y = "Total Sales", color = "Alcohol Type:") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = "M"))
@@ -98,10 +98,7 @@ ggplot(summed_sales, aes(x = interaction(Year, Month, sep = "-"), y = Total.Sale
 american_vodka_sales <- iowa_sales %>%
   filter(Category.Name == "AMERICAN VODKAS") %>%
   group_by(Item.Description) %>%
-  summarize(
-    TotalVolume = sum(Volume.Sold.Liters),
-    TotalRevenue = sum(Bottles.Sold * State.Bottle.Retail)
-  ) %>%
+  summarize(TotalVolume = sum(Volume.Sold.Liters),TotalRevenue = sum(Bottles.Sold * State.Bottle.Retail)) %>%
   arrange(-TotalVolume)
 
 selected_vodkas <- c("HAWKEYE VODKA", "TITOS HANDMADE VODKA", "FIVE O'CLOCK VODKA", "BARTON VODKA", "MCCORMICK VODKA PET")
@@ -113,10 +110,7 @@ ggplot(filtered_vodka_sales, aes(x = reorder(Item.Description, TotalVolume), y =
   geom_point(aes(size = TotalRevenue, color = TotalRevenue), alpha = 0.7) +
   coord_flip() + 
   theme_minimal() +
-  labs(
-    title = "Sales of Selected American Vodkas",
-    x = NULL,
-    y = "Total Sales Volume (Liters)") +
+  labs(x = NULL, y = "Total Sales Volume (Liters)") +
   theme(axis.text.y = element_text(size = 12)) +
   guides(size = "none") +
   scale_color_viridis_c(name = "Total Revenue ($)", labels = scales::label_number(scale = 1e-6, suffix = "M")) +
@@ -153,16 +147,15 @@ least_revenue_alcohol <- iowa_sales %>%
 
 least_revenue_alcohol <- head(least_revenue_alcohol, 20)
 
+least_revenue_alcohol
+
 ggplot(least_revenue_alcohol, aes(x = Item.Description, y = TotalRevenue)) +
   geom_point(color = "red") + 
   coord_flip() + 
-  labs(
-    title = "Alcohol Products with Least Revenue",
-    x = "Item Description",
-    y = "Total Revenue"
-  ) +
+  labs(title = "Worst Selling Products", x = NULL, y = "Total Revenue ($)") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.y = element_text(size = 8))
 
 
 ```
