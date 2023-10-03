@@ -110,8 +110,8 @@ ggplot(filtered_vodka_sales, aes(x = reorder(Item.Description, TotalVolume), y =
   geom_point(aes(size = TotalRevenue, color = TotalRevenue), alpha = 0.7) +
   coord_flip() + 
   theme_minimal() +
-  labs(x = NULL, y = "Total Sales Volume (Liters)") +
-  theme(axis.text.y = element_text(size = 12)) +
+  labs(title = "Revenue and Sales Volume of Top Selling American Vodka Brands", x = NULL, y = "Total Sales Volume (Liters)") +
+  theme(axis.text.y = element_text(size = 12), plot.title = element_text(size = 10)) +
   guides(size = "none") +
   scale_color_viridis_c(name = "Total Revenue ($)", labels = scales::label_number(scale = 1e-6, suffix = "M")) +
   scale_y_continuous(labels = scales::label_number(scale = 1e-3, suffix = "K"))
@@ -145,17 +145,54 @@ least_revenue_alcohol <- iowa_sales %>%
   summarize(TotalRevenue = sum(Revenue)) %>%
   arrange(TotalRevenue)
 
-least_revenue_alcohol <- head(least_revenue_alcohol, 20)
+least_revenue_alcohol <- head(least_revenue_alcohol, 10)
 
 least_revenue_alcohol
 
 ggplot(least_revenue_alcohol, aes(x = Item.Description, y = TotalRevenue)) +
   geom_point(color = "red") + 
   coord_flip() + 
-  labs(title = "Worst Selling Products", x = NULL, y = "Total Revenue ($)") +
+  labs(title = "Bottom 10 Products by Revenue", x = NULL, y = "Total Revenue ($)") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   theme(axis.text.y = element_text(size = 8))
 
+
+```
+
+```{r code07}
+#Visualize worst performing cities by total revenue
+
+city_sales <- iowa_sales %>%
+  group_by(City) %>%
+  summarize(TotalRevenue = sum(State.Bottle.Retail * Bottles.Sold)) %>%
+  arrange(TotalRevenue)
+
+worst_cities <- head(city_sales, 10)
+
+best_cities <- tail(city_sales, 10)
+
+worst_city_sales <- iowa_sales %>%
+  filter(City %in% worst_cities$City)
+
+best_city_sales <- iowa_sales %>%
+  filter(City %in% best_cities$City)
+
+ggplot(worst_city_sales, aes(x = City, y = Bottles.Sold)) +
+  geom_boxplot(fill = "red", outlier.colour = "black", outlier.shape = 8) +
+  labs(title = "Sales Distribution in Underperforming Cities",
+       x = "City",
+       y = "Bottles Sold") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplot(best_cities, aes(x = reorder(City, TotalRevenue), y = TotalRevenue)) +
+  geom_point(color = "green", size = 3) +
+  labs(title = "Best Performing Cities",
+       x = NULL,
+       y = "Total Revenue ($)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_y_continuous(labels = scales::label_number(scale = 1e-6, suffix = "M"))
 
 ```
