@@ -8,8 +8,10 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-How did the impaired driving death rates change from 2012 to 2014 for each age group?
-Which age group and gender had the highest and lowest impaired driving death rates in both 2012 and 2014?
+Source: https://data.cdc.gov/Motor-Vehicle/Impaired-Driving-Death-Rate-by-Age-and-Gender-2012/ebbj-sh54
+
+Which age group experienced the highest impaired driving death rate in both 2012 and 2014?
+How did the impaired driving death rate for males and females change between 2012 and 2014?
 ```{r code 01}
 
 
@@ -70,7 +72,7 @@ long_dd <- US_dd %>%
 #Visualize data
 
 ggplot(long_dd, aes(x = Category, y = Value, fill = Year)) +
-  geom_bar(stat = "identity", position = "dodge") + # Dodge will place bars side by side
+  geom_bar(stat = "identity", position = "dodge") +
   labs(title = "Impaired Driving Death Rate by Age Group and Year", x = "Age Group", y = "Death Rate") +
   scale_x_discrete(labels = c(All = "All Ages", Age0to20 = "Ages 0-20", Age21to34 = "Ages 21-34", Age35plus = "Ages 35+", Male = "Males", Female = "Females")) + theme_minimal()
 
