@@ -8,13 +8,8 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-Source: https://data.cdc.gov/Motor-Vehicle/Impaired-Driving-Death-Rate-by-Age-and-Gender-2012/ebbj-sh54
 
-Which age group experienced the highest impaired driving death rate in both 2012 and 2014?
-How did the impaired driving death rate for males and females change between 2012 and 2014?
-```{r code 01}
-
-
+```{r code01, echo=FALSE, message=FALSE, warning=FALSE}
 # Load Packages into coding environment
 library("ggplot2")
 library("dplyr")
@@ -69,11 +64,63 @@ long_dd <- US_dd %>%
     names_sep = "_",
     values_to = "Value")
 
-#Visualize data
+#Visualize data for pretty plot
 
 ggplot(long_dd, aes(x = Category, y = Value, fill = Year)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Impaired Driving Death Rate by Age Group and Year", x = "Age Group", y = "Death Rate") +
+  labs(x = "Demographic Group", y = "Fatality Rate") +
   scale_x_discrete(labels = c(All = "All Ages", Age0to20 = "Ages 0-20", Age21to34 = "Ages 21-34", Age35plus = "Ages 35+", Male = "Males", Female = "Females")) + theme_minimal()
 
+```
+Figure 1: Comparison of impaired driving fatality rates by demographic group for the years 2012 and 2014 in the United States. The fatality rate represents the number of deaths per 100,000 population from crashes involving a driver with a Blood Alcohol Concentration (BAC) of 0.08% or higher. Data sources: Fatality Analysis Reporting System (FARS) for 2012 and the National Highway Traffic Administration's (NHTSA) FARS 2014 Annual Report File. Note: Rates based on fewer than 20 deaths are suppressed.
+
+\newpage
+
+
+```{r code02, echo=FALSE, message=FALSE, warning=FALSE}
+#Visualize data for ugly plot
+
+ggplot(long_dd, aes(x = Category, y = Value, fill = Year)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "deaddrives in the us",
+    x = "Demographic Group",
+    y = "Fatality Rate",
+    caption = "This is a chart that shows data about some people's fatal situations, which are represented by the height of these colored bars.") +
+  scale_x_discrete(labels = c(All = "All Ages", Age0to20 = "Ages 0-20", Age21to34 = "Ages 21-34", Age35plus = "Ages 35+", Male = "Males", Female = "Females")) +
+  scale_y_continuous(limits=c(0, 5)) +
+  theme_classic() +
+  theme(
+    plot.background = element_rect(fill = "lightyellow", color = "red"),
+    panel.background = element_rect(fill = "pink"),
+    axis.text.x = element_text(face = "italic", color = "red", size = 12),
+    axis.text.y = element_text(face = "bold", color = "purple", size = 12),
+    legend.background = element_rect(fill = "orange", color = "darkred", size = 1.5, linetype = "solid"),
+    legend.text = element_text(face = "italic", color = "darkgreen", size = 10)) + 
+  scale_fill_manual(values = c("2012" = "cyan", "2014" = "magenta"))
+
+
+```
+\newpage
+
+Viz 2 Assignment
+
+Questions:
+
+Which age group experienced the highest impaired driving fatality rate in the United States for the years 2012 and 2014?
+
+How did the impaired driving fatality rate for males and females in the United States change between 2012 and 2014?
+
+Source: 
+
+https://data.cdc.gov/Motor-Vehicle/Impaired-Driving-Death-Rate-by-Age-and-Gender-2012/ebbj-sh54
+
+Data Description: 
+
+The data presents an analysis of the number of deaths per 100,000 individuals in age and gender groups for each state in the US. These fatalities occurred in car accidents where one driver had a Blood Alcohol Concentration (BAC) of 0.08% or higher which is considered the legal limit for being intoxicated in many areas. The data comes from the years 2012 and 2014. The data for 2012 is obtained from the Fatality Analysis Reporting System (FARS) while the data for 2014 is sourced from the Annual Report File of the National Highway Traffic Administrations (NHTSA).
+\newpage
+
+```{r code01, eval=FALSE, echo=TRUE}
+```
+```{r code02, eval=FALSE, echo=TRUE}
 ```
